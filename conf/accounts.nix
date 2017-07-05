@@ -12,5 +12,6 @@
     extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
     shell = pkgs.zsh;
     uid = 1000;
+    openssh.authorizedKeys.keyFiles = [ ../keys/github-mini.pub ];
   };
 }
