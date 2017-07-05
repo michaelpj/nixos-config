@@ -6,6 +6,8 @@
     binutils gcc gnumake pkgconfig python ruby
     # utilities
     wget unzip rsync
+    # nix
+    nix-repl nixops nix-prefetch-git
     # desktop
     firefox
     networkmanagerapplet
@@ -28,12 +30,6 @@
     };
 
     arbtt.enable = true;
-
-    redshift = {
-      enable = true;
-      latitude = "51";
-      longitude = "1";
-    };
 
     printing.enable = true;
   };

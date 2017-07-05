@@ -8,6 +8,12 @@
     desktopManager.xfce.enable = true;
     displayManager.lightdm.enable = true;
   };
+
+  services.redshift = {
+    enable = true;
+    latitude = "51";
+    longitude = "1";
+  };
   
   environment.systemPackages = with pkgs; [
     xfce.xfwm4themes
