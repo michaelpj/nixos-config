@@ -3,8 +3,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/users.nix
       ../../modules/basics.nix
+      ../../modules/locales.nix
+      ../../modules/users.nix
     ];
 
   boot.loader.grub.enable = true;
