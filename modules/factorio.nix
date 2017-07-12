@@ -1,4 +1,4 @@
-{ domain }:
+{ domain, ... }:
 { config, pkgs, ... }:
 let 
   factorio = "factorio.${domain}";

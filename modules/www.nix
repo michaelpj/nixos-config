@@ -1,4 +1,4 @@
-{ domain, enableSsl }:
+{ domain, enableSsl, ... }:
 { config, pkgs, ... }:
 let 
   www = "www.${domain}";

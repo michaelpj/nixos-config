@@ -6,7 +6,7 @@ in
 {
   services.nginx.virtualHosts."${www}" = { 
     locations."/blog" = {
-      alias = pkgs.callPackage ../../blog/blog/build/default.nix {};
+      alias = pkgs.callPackage ../../blog/build/default.nix {};
     };
 
     # redirect root to blog for now 
