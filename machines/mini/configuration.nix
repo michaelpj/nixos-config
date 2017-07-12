@@ -4,15 +4,15 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../config/nix.nix
-      ../../config/nixpkgs.nix
-      ../../config/networking.nix
-      ../../config/basics.nix
-      ../../config/locales.nix
-      ../../config/development-machine.nix
-      ../../config/desktop-manager.nix
-      ../../config/laptop.nix
-      ../../config/accounts.nix
+      ../../modules/nix.nix
+      ../../modules/nixpkgs.nix
+      ../../modules/networking.nix
+      ../../modules/basics.nix
+      ../../modules/locales.nix
+      ../../modules/workstation.nix
+      ../../modules/graphical.nix
+      ../../modules/laptop.nix
+      ../../modules/users.nix
     ];
 
   hardware.trackpoint.emulateWheel = true;
