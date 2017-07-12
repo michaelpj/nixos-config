@@ -1,0 +1,81 @@
+==================================================================
+https://keybase.io/michaelpj
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://michaelpj.com
+  * I am michaelpj (https://keybase.io/michaelpj) on keybase.
+  * I have a public key with fingerprint 1467 08F4 9CF9 18E7 A179  FD2D C785 EF06 E1E7 13F3
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101a6a7231539b2af70adcf0239699ca2cffde5d568d2c4ff4cdcb1f7a56901e0650a",
+            "fingerprint": "146708f49cf918e7a179fd2dc785ef06e1e713f3",
+            "host": "keybase.io",
+            "key_id": "c785ef06e1e713f3",
+            "kid": "0101a6a7231539b2af70adcf0239699ca2cffde5d568d2c4ff4cdcb1f7a56901e0650a",
+            "uid": "8e3d061cb24e58e7687f6a78a2a8f719",
+            "username": "michaelpj"
+        },
+        "revoke": {
+            "sig_ids": [
+                "02699f391b4b91148bb5e737b5e7e4da712954d5f56ddf3bd0a196905b3ce4b20f"
+            ]
+        },
+        "service": {
+            "hostname": "michaelpj.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1496693048,
+    "expire_in": 157680000,
+    "prev": "9c0933ba5d3932b7a40d9f93d59dd6166f696a11ac38a7978ed7f28edab4cde8",
+    "seqno": 31,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.71
+Comment: https://keybase.io/crypto
+
+yMN/AnicrZJtUBVVGMcvoBgMlkYog1S2BtZwlT37vncgfEt0EIQUpKiYs3vOwgbc
+ve69gMyFEXwZkVFASAImG0YcLFDK0tEcyIE0FJqgiWrEspgoBqORdzScoXOZ+tL0
+sf1wdnb3//ye3z7nXF/qY/H36jp833dwOHDSq6djOtfyKv+p5KYUAxVQNjeVhRdu
+OBthpys9S0eUjaIBDaAARYYFPCsrDNREGiJVoxlWFmRZhYyqaQjziBckxKicpnEq
+UhWgiZAXZBpgWuBpSFkpTbdnYNNh6nYXwQJOEGlJ42RVk4GERQhEWUMMUkWJxxot
+YIBFwGosKcw0nJ4KIqdAJ16vG+QdeUhf0PuP/P/snbuAkzCLaAGoCsNhnvgKkqgR
+ugQZKGkikD1BJzbtMAeTdI6uZkKc7XiLKrJSJs4zsrBnsE49g1g7KVsaRTNEQmNl
+oHCKDAAnKQqPRVb0rJhDUASMzHOI13gBIY1VEA0B8aZ5hVUxpzC0Rr1B2KRlnq4u
+wD1j+nf79aqRQ8wcpuEyVCObfMp0uRw2j5WrwOGJ5mMl/W9IuqLbEdkkUpCHTadu
+2CkbIEnVpXuogJMFQWZpTrJSeJ9DN3G67knwZBY0uTxtcB5Byiots6wCecTKLKOI
+kKORrMks4mWEBCAImiALEACoshIUZVHCSNQYskKFbAGWKM9v7bUblI0FxBNmECaZ
+nB26ck1MFXV2vL7I4uVv8V3s7Tm9Fn+/Zf+c6fdHn5h/OWqqd/yZW/cDrhVlfx3d
+OxEZUjJ0IP/F+MfPzG0NLTtV7R6sSU09M/NJ44VNc/X6+Dc2/V6uWQtPtLXWDr02
+5tX4kqOSvjoSUbLKvUE1Yn8XU+/GVXs3BHX21Cam3Jo5Pe6mzs0+23fsauZ716aT
+Qnb4tk9eLr1yLdZMZFM7erzdV4KezwkuDHxud92+UGV5eMHAj9UVPzS1Jg9nBU0p
+T4fHHGm+PB0+sMy3nOovX9oUWTFgsX4W7d9zbPB2V+j2kJS19RtP8u41N+GWewlh
+Z8/tjNncYVLZDV27AjYmpfdyubFrEwYKrdLhs8OPgbhHzfM/DfXfuR6VvMjvzYsj
+M/2H+F9Wz8bUrTizp+fktzei25SJstqcNW8fjA5gR1e0Rx1aIjHVoCXCntYo382t
+MpPfrd8/su7zS0OXUmrip7bVtH4QVLOxYS7ji9DdEe0DO2bvdbpjffYH0x82Fj8I
+2Hb+5/xXimqKK33m9/465bXqu9IxX4uy+PsL4SvfaUZtXzZXxR+1BqberBr9qjQh
++8k/kh/cOLqr4OGSdYdbUit+Wx1m2ROz9WH3HdoZlVgwUci1t3aH9R4wDj7Co8dP
+RL7QV7+y9dRksXj+9N4NCUm3j2wHpWDa4qfMrl9uiMFPdYx+bJZvBnXd4nBgSVlo
+zkfRTSM9LXHWsfsobWdT36aQtrLO4+Bi5dyfVX8BrRTfow==
+=sdGS
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/michaelpj
+
+==================================================================
+
