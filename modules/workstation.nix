@@ -17,6 +17,7 @@
     gnome3.gconf
     steam
     evince
+    hexchat
   ];
 
   virtualisation.virtualbox.host.enable = true;

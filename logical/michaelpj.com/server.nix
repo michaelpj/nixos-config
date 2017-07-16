@@ -1,16 +1,18 @@
-let 
-  parameters = import ./parameters.nix;
-in 
+{ domain ? "michaelpj.com", enableSsl ? true, ... }:
+let
+  # using an @ binding doesn't seem to work with optional args
+  args = { inherit domain enableSsl; };
+in
 {
-  network.description = parameters.domain;
+  network.description = domain;
 
   server = 
     { config, pkgs, ... }:
     {
       imports = [ 
-        (import ../../modules/www.nix parameters)
-        (import ../../modules/blog.nix parameters)
-        (import ../../modules/factorio.nix parameters)
+        (import ../../modules/www.nix args)
+        (import ../../modules/blog.nix args)
+        (import ../../modules/factorio.nix args)
       ];
 
       services.nginx = {

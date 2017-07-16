@@ -19,7 +19,7 @@ in
       # hostnames don't match
       default = true;
       enableACME = enableSsl;
-      enableSSL = enableSsl;
+      forceSSL = enableSsl;
 
       locations."/.well-known" = {
         alias = ../well-known;
