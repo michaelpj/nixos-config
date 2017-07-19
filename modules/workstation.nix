@@ -15,7 +15,6 @@
     spotify
     tilda
     gnome3.gconf
-    steam
     evince
     hexchat
   ];
