@@ -13,6 +13,7 @@
       ../../modules/graphical.nix
       ../../modules/laptop.nix
       ../../modules/users.nix
+      ../../modules/semmle-vpn.nix
     ];
 
   hardware.trackpoint.emulateWheel = true;
