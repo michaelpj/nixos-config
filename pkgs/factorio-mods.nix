@@ -18,7 +18,14 @@ let
     '';
   };
 in
-{
+rec {
+  collection = [ 
+    helmod 
+    bottleneck 
+    squeak-through 
+    upgrade-planner
+  ];
+
   helmod = modDrv rec {
     version = "0.5.7";
     name = "helmod-${version}";
