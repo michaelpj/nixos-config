@@ -20,6 +20,7 @@
         key /root/.vpn/semmle/key.key
       '';
       updateResolvConf = true; 
+      autoStart = false;
     };
   };
 }
