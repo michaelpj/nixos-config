@@ -15,6 +15,7 @@
       "systemd-journal"
       "networkmanager" 
       "vboxusers" 
+      "libvirtd"
     ];
     shell = pkgs.zsh;
     uid = 1000;

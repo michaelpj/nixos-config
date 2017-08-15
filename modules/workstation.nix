@@ -17,9 +17,20 @@
     gnome3.gconf
     evince
     hexchat
+    nixops qemu
   ];
 
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+    };
+  };
+
+  virtualisation.libvirtd = {
+    enable = true;
+  };
+
+  networking.firewall.checkReversePath = false;
 
   services = {
     keybase.enable = true;
