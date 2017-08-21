@@ -2,7 +2,7 @@
 
 {
   nixpkgs = {
-    config = import ../pkgs/nixpkgs-config.nix;
-    overlays = import ../overlays/overlays.nix;
+    config = import ../nixpkgs/config.nix;
+    overlays = import ../nixpkgs/overlays.nix;
   };
 }
