@@ -1,6 +1,6 @@
 self: super:
 let
-  factorio-secrets = import ../secrets/factorio.nix;
+  factorio-secrets = import ../../secrets/factorio.nix;
 in
 {
 
