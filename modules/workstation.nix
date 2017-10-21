@@ -45,6 +45,11 @@
     printing.enable = true;
   };
 
+  programs = {
+    # want to remember keys on here
+    ssh.startAgent = true;
+  };
+
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
