@@ -34,6 +34,6 @@
   time.timeZone = "Europe/London";
 
   environment.systemPackages = with pkgs; [
-    spotify
+    spotify steam
   ];
 }
