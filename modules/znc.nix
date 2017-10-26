@@ -18,6 +18,9 @@
         channels = [ "nixos" "nixos-dev" ];
         modules = [ "simple_away" ];
       };
+      extraZncConf = ''
+        MaxBufferSize=10000
+      '';
     };
 
   };
