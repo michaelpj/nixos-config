@@ -15,7 +15,8 @@
         port = 6697; 
         server = "chat.freenode.net"; 
         useSSL = true;
-        channels = [ "nixos" ];
+        channels = [ "nixos" "nixos-dev" ];
+        modules = [ "simple_away" ];
       };
     };
 

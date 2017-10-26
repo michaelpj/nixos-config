@@ -31,8 +31,6 @@
     hostId = "05af16a2";
   };
 
-  time.timeZone = "Europe/London";
-
   environment.systemPackages = with pkgs; [
     spotify steam
   ];

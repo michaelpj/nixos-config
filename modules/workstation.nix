@@ -10,24 +10,15 @@
     nix-repl nixops nix-prefetch-git
     # desktop
     firefox
-    networkmanagerapplet
-    xscreensaver
-    spotify
     yakuake konsole
-    gnome3.gconf
-    evince
-    hexchat
+    evince okular
+    konversation
     nixops qemu
   ];
 
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-    };
-  };
-
-  virtualisation.libvirtd = {
-    enable = true;
+  virtualisation = {
+    virtualbox.host.enable = true;
+    libvirtd.enable = true;
   };
 
   networking.firewall.checkReversePath = false;
@@ -48,18 +39,5 @@
   programs = {
     # want to remember keys on here
     ssh.startAgent = true;
-  };
-
-  fonts = {
-    enableFontDir = true;
-    enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      corefonts
-      source-code-pro
-      source-sans-pro
-      source-serif-pro
-      dejavu_fonts
-      iosevka
-    ];
   };
 }
