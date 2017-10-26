@@ -2,7 +2,7 @@
 { config, pkgs, ... }:
 let 
   factorio = "factorio.${domain}";
-  factorio-mods = (pkgs.callPackage ../nixpkgs/factorio-mods.nix {}).collection;
+  factorio-mods = (pkgs.callPackage ../nixpkgs/pkgs/factorio-mods.nix {}).collection;
 in
 {
   nixpkgs.config.allowUnfree = true;
