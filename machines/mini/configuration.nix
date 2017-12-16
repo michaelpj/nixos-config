@@ -16,10 +16,12 @@
       ../../modules/semmle-vpn.nix
     ];
 
-  hardware.trackpoint.emulateWheel = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware = {
+    trackpoint.emulateWheel = true;
+    pulseaudio.enable = true;
+    pulseaudio.support32Bit = true;
+    opengl.driSupport32Bit = true;
+  };
 
   boot = {
     loader.systemd-boot.enable = true;
