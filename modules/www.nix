@@ -24,6 +24,12 @@ in
       locations."/.well-known" = {
         alias = ../well-known;
       };
+      locations."/blog" = {
+        alias = pkgs.callPackage ../blog/build/default.nix {};
+      };
+      locations."/" = {
+        root = ../landing;
+      };
     };
     
     # not entirely sure why I need this, but nginx complains when deployed to virtd without it
