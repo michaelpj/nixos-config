@@ -18,8 +18,9 @@ in
       # This makes things work nicely when we're not deployed to the real host, so
       # hostnames don't match
       default = true;
+
       enableACME = enableSsl;
-      addSSL = enableSsl;
+      forceSSL = enableSsl;
 
       locations."/.well-known" = {
         alias = ../well-known;

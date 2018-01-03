@@ -31,7 +31,7 @@
       mountPoint = "/keybase";
     };
 
-    arbtt.enable = true;
+    #arbtt.enable = true;
 
     printing.enable = true;
   };
