@@ -25,6 +25,9 @@ in
         alias = ../well-known;
       };
     };
+    
+    # not entirely sure why I need this, but nginx complains when deployed to virtd without it
+    appendHttpConfig = "server_names_hash_bucket_size 64;";
   };
 
   networking.firewall.allowedTCPPorts = [ 80 ] ++ (if enableSsl then [ 443 ] else []);
