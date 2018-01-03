@@ -1,3 +1,6 @@
 [submodule "blog"]
 	path = blog
 	url = git@github.com:michaelpj/termsandtruthconditions.git
+[submodule "cv"]
+	path = cv
+	url = git@github.com:michaelpj/cv.git

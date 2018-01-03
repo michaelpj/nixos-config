@@ -14,6 +14,7 @@ in
         (import ../../modules/znc.nix)
         (import ../../modules/blog.nix args)
         (import ../../modules/factorio.nix args)
+        (import ../../modules/hostedFiles.nix args)
       ];
 
       services.nginx = {
