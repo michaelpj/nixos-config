@@ -26,7 +26,7 @@ in
         alias = ../well-known;
       };
       locations."/blog" = {
-        alias = pkgs.callPackage ../blog/build/default.nix {};
+        alias = pkgs.callPackage ../blog/default.nix {};
       };
       locations."/" = {
         root = ../landing;
