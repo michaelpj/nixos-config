@@ -34,6 +34,5 @@
 
   environment.systemPackages = with pkgs; [
     numix-icon-theme papirus-icon-theme arc-icon-theme
-    networkmanagerapplet
   ];
 }

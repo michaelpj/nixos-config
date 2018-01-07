@@ -2,9 +2,11 @@
 
 {
   networking = {
-    networkmanager.enable = true;
+    connman.enable = true;
     firewall.enable = false;
   };
+
+  environment.systemPackages = [ pkgs.cmst ];
 
   services.avahi = {
     enable = true;
