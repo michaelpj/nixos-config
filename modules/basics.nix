@@ -10,5 +10,7 @@
     openssh.enable = true;
     # useful when it's all going wrong
     nixosManual.showManual = true;
+    # just more sensible
+    dbus.socketActivated = true;
   };
 }
