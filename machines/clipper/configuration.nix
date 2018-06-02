@@ -24,6 +24,11 @@
     opengl.driSupport32Bit = true;
   };
 
+  services.xserver.libinput = {
+    enable = true;
+    disableWhileTyping = true;
+  };
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -31,7 +36,9 @@
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
-  services.autoScrub.enable = true;
+  services.zfs.autoScrub.enable = true;
+
+  services.fprintd.enable = true;
 
   networking = {
     hostName = "clipper"; 
