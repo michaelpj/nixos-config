@@ -13,6 +13,7 @@
       ../../modules/graphical.nix
       ../../modules/laptop.nix
       ../../modules/users.nix
+      ../../modules/entertainment.nix
       ../../modules/semmle-vpn.nix
     ];
 
@@ -32,8 +33,4 @@
     hostName = "mini"; 
     hostId = "05af16a2";
   };
-
-  environment.systemPackages = with pkgs; [
-    spotify steam
-  ];
 }

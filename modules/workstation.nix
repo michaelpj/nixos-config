@@ -7,7 +7,7 @@
     # utilities
     wget unzip rsync emacs
     # nix
-    nix-repl nixops nix-prefetch-git
+    nixops nix-prefetch-git
     # desktop
     firefox
     yakuake konsole

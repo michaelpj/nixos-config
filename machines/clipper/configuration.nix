@@ -13,6 +13,7 @@
       ../../modules/graphical.nix
       ../../modules/laptop.nix
       ../../modules/users.nix
+      ../../modules/entertainment.nix
       ../../modules/semmle-vpn.nix
     ];
 
@@ -26,8 +27,11 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    supportedFilesystems = [ "zfs" ];
   };
+
+  # zfs
+  boot.supportedFilesystems = [ "zfs" ];
+  services.autoScrub.enable = true;
 
   networking = {
     hostName = "clipper"; 
