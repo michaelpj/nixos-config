@@ -17,7 +17,7 @@
     provider = "geoclue2";
   };
 
-  services.tzupdate.enable = true;
+  services.localtime.enable = true;
 
   fonts = {
     enableFontDir = true;
