@@ -1,9 +1,19 @@
 { config, pkgs, ... }:
 
+
+let
+  nixos-hardware = (import ../../nix-misc/external-sources).nixos-hardware;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # none of the profiles quite fit, but these apply
+      "${nixos-hardware}/lenovo/thinkpad"
+      "${nixos-hardware}/common/cpu/intel"
+      "${nixos-hardware}/common/pc/ssd"
+
       ../../modules/nix.nix
       ../../modules/nixpkgs.nix
       ../../modules/networking.nix
@@ -33,6 +43,10 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
+
+  # thinkpad stuff
+  boot.extraModulePackages = [ config.boot.kernelPackages.acpi_call ];
+  boot.kernelModules = [ "acpi_call" ];
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
