@@ -6,6 +6,8 @@
     firewall.enable = false;
   };
 
+  services.resolved.enable = true;
+
   services.avahi = {
     enable = true;
     nssmdns = true;
