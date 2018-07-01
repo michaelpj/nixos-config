@@ -9,10 +9,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      # none of the profiles quite fit, but these apply
-      "${nixos-hardware}/lenovo/thinkpad"
-      "${nixos-hardware}/common/cpu/intel"
-      "${nixos-hardware}/common/pc/ssd"
+      "${nixos-hardware}/lenovo/thinkpad/t480s"
 
       ../../modules/nix.nix
       ../../modules/nixpkgs.nix
@@ -34,6 +31,8 @@ in
     opengl.driSupport32Bit = true;
   };
 
+  services.thermald.enable = true;
+
   services.xserver.libinput = {
     enable = true;
     disableWhileTyping = true;
@@ -43,10 +42,6 @@ in
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-
-  # thinkpad stuff
-  boot.extraModulePackages = [ config.boot.kernelPackages.acpi_call ];
-  boot.kernelModules = [ "acpi_call" ];
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
@@ -58,4 +53,6 @@ in
     hostName = "clipper"; 
     hostId = "635f8603";
   };
+  
+  system.nixos.stateVersion = "18.09";
 }
