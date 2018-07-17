@@ -39,5 +39,6 @@
   programs = {
     # want to remember keys on here
     ssh.startAgent = true;
+    gnupg.agent.enable = true;
   };
 }
