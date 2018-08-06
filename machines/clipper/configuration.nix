@@ -54,5 +54,5 @@ in
     hostId = "635f8603";
   };
   
-  system.nixos.stateVersion = "18.09";
+  system.stateVersion = "18.09";
 }
