@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     steam 
-    #spotify 
+    spotify 
     vlc
   ];
 }
