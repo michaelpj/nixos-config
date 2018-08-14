@@ -7,7 +7,7 @@
     defaultLocale = "en_GB.UTF-8";
   };
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     aspell
     aspellDicts.en
     aspellDicts.uk
