@@ -21,6 +21,7 @@ in
       ../../modules/laptop.nix
       ../../modules/users.nix
       ../../modules/entertainment.nix
+      ../../modules/research.nix
       ../../modules/semmle-vpn.nix
     ];
 
