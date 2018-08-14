@@ -6,4 +6,10 @@
     consoleKeyMap = "uk";
     defaultLocale = "en_GB.UTF-8";
   };
+
+  environment.systemPackages = [
+    aspell
+    aspellDicts.en
+    aspellDicts.uk
+  ];
 }
