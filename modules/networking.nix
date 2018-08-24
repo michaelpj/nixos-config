@@ -4,6 +4,7 @@
   networking = {
     networkmanager.enable = true;
     firewall.enable = false;
+    nameservers = [ "8.8.8.8" ];
   };
 
   services.avahi = {
