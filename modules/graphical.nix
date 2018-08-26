@@ -17,7 +17,8 @@
     provider = "geoclue2";
   };
 
-  services.localtime.enable = true;
+  # broken due to geoclue being stupid
+  #services.localtime.enable = true;
 
   fonts = {
     enableFontDir = true;
