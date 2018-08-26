@@ -1,7 +1,0 @@
-{
-  nixos-hardware = builtins.fetchGit { 
-    url = "https://github.com/NixOS/nixos-hardware.git";
-    ref = "master";
-    rev = "d534770be7f699b3332ef09bd043745a38d115ad";
-  };
-}
