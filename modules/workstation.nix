@@ -5,7 +5,7 @@
     # build-essentials
     binutils gcc gnumake pkgconfig python ruby
     # utilities
-    wget unzip rsync emacs
+    wget unzip rsync emacs editorconfig-core-c
     # nix
     nixops nix-prefetch-git
     # desktop
