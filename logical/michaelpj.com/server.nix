@@ -12,7 +12,6 @@ in
       imports = [ 
         (import ../../modules/www.nix args)
         (import ../../modules/znc.nix)
-        (import ../../modules/factorio.nix args)
         (import ../../modules/hostedFiles.nix args)
       ];
 
