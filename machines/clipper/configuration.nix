@@ -18,7 +18,8 @@
       ../../modules/users.nix
       ../../modules/entertainment.nix
       ../../modules/research.nix
-      ../../modules/semmle-vpn.nix
+
+      ../../modules/work/iohk/binary-cache.nix
     ];
 
   hardware = {
