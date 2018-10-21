@@ -7,5 +7,6 @@
     daemonNiceLevel = 1;
     daemonIONiceLevel = 1;
     trustedUsers = [ "@wheel" ];
+    binaryCaches = [ "https://cache.nixos.org/" ];
   };
 }
