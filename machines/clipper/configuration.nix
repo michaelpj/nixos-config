@@ -20,6 +20,7 @@
       ../../modules/research.nix
 
       ../../modules/work/iohk/binary-cache.nix
+      ../../modules/cachix/hie-nix.nix
     ];
 
   hardware = {
