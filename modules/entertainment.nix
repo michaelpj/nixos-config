@@ -2,7 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    steam 
+    steam
+    steam-run
     spotify 
     vlc
   ];

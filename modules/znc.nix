@@ -2,13 +2,15 @@
 {
   services.znc = {
     enable = true;
+    mutable = false;
     confOptions = {
       nick = "michaelpj";
+      # usual insecure pass
       passBlock = ''
         <Pass password>
                 Method = sha256
-                Hash = 74d48ba1f186136e8002d3931a497ec707db7bef212646c9eaadde9a0f542524
-                Salt = uggle86*ad-*xofu?Gk6
+                Hash = a49dcfe62df237e14b0a25a7fce06085123d48da527ca4e738a7ad59e806b3c4
+                Salt = 3fuaJ,dQdUpmin/r+8wZ
         </Pass>
       '';
       networks.freenode = {

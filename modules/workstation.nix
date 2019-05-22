@@ -1,19 +1,21 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./direnv.nix ];
+
   environment.systemPackages = with pkgs; [
     # build-essentials
     binutils gcc gnumake pkgconfig python ruby
     # utilities
     wget unzip rsync emacs editorconfig-core-c gitAndTools.diff-so-fancy
     # nix
-    nixops nix-prefetch-git
+    nix-prefetch-git
     # desktop
     firefox
     yakuake konsole
     evince okular
     konversation
-    nixops qemu
+    qemu
   ];
 
   virtualisation = {
