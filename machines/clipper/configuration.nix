@@ -28,6 +28,7 @@
     pulseaudio.enable = true;
     pulseaudio.support32Bit = true;
     opengl.driSupport32Bit = true;
+    enableRedistributableFirmware = true;
   };
 
   boot = {
@@ -43,7 +44,6 @@
       disableWhileTyping = true;
     };
     fwupd.enable = true;
-    fprintd.enable = true;
   };
 
   # zfs
