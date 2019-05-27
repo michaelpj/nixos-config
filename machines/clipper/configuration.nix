@@ -34,6 +34,9 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+
+    # I don't really care about these issues on my laptop
+    boot.kernelParams = [ "mitigations=off" ];
   };
 
   services = {
