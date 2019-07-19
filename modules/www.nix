@@ -10,9 +10,7 @@ in
   services.nginx = {
     # Redirect bare domain to www
     # Note: doesn't do anything when deployed to testing
-    virtualHosts."${domain}" = { 
-      extraConfig = "return 301 $scheme://${www}$request_uri;";
-    };
+    virtualHosts."${domain}".extraConfig = "return 301 $scheme://${www}$request_uri;";
 
     virtualHosts."${www}" = { 
       # This makes things work nicely when we're not deployed to the real host, so
@@ -22,15 +20,9 @@ in
       enableACME = enableSsl;
       forceSSL = enableSsl;
 
-      locations."/.well-known" = {
-        alias = ../well-known;
-      };
-      locations."/blog" = {
-        alias = pkgs.callPackage ../blog/default.nix {};
-      };
-      locations."/" = {
-        root = ../landing;
-      };
+      locations."/.well-known/".alias = ../well-known + "/";
+      locations."/blog/".alias = pkgs.callPackage ../blog/default.nix {} + "/";
+      locations."/".root = ../landing;
     };
     
     # not entirely sure why I need this, but nginx complains when deployed to virtd without it
