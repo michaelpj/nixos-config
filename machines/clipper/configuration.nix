@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -40,14 +40,17 @@
   };
 
   services = {
-    thermald.enable = true;
     fstrim.enable = true;
     xserver.libinput = {
       enable = true;
       disableWhileTyping = true;
     };
     fwupd.enable = true;
+    throttled.enable = true;
   };
+
+  systemd.services.cpu-throttling.enable = lib.mkForce false;
+  systemd.timers.cpu-throttling.enable = lib.mkForce false;
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
