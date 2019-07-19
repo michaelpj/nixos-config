@@ -18,7 +18,7 @@
   };
 
   # broken due to geoclue being stupid
-  #services.localtime.enable = true;
+  services.localtime.enable = true;
 
   fonts = {
     enableFontDir = true;
