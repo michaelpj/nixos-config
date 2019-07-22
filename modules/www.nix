@@ -20,7 +20,7 @@ in
       enableACME = enableSsl;
       forceSSL = enableSsl;
 
-      locations."/.well-known/".alias = ../well-known + "/";
+      locations."/.well-known/".alias = "${../well-known}" + "/";
       locations."/blog/".alias = pkgs.callPackage ../blog/default.nix {} + "/";
       locations."/".root = ../landing;
     };
