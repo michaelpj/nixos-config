@@ -46,11 +46,7 @@
       disableWhileTyping = true;
     };
     fwupd.enable = true;
-    throttled.enable = true;
   };
-
-  systemd.services.cpu-throttling.enable = lib.mkForce false;
-  systemd.timers.cpu-throttling.enable = lib.mkForce false;
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
