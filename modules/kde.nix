@@ -5,7 +5,7 @@
     displayManager.sddm = {
       enable = true;
       enableHidpi = true;
-      theme = "sugar-dark"
+      theme = "sugar-dark";
     };
   };
 
