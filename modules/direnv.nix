@@ -10,5 +10,7 @@
       eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
     '';
   };
+
+  services.lorri.enable = true;
 }
 
