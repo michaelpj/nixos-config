@@ -36,6 +36,7 @@
     #arbtt.enable = true;
 
     printing.enable = true;
+    emacs.enable = true;
   };
 
   programs = {
