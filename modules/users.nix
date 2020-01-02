@@ -1,7 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    # Set this explicitly to where e.g. zprezto expects it
+    histFile = "$HOME/.config/zsh/.zhistory";
+  };
 
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false; 
