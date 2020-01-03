@@ -18,6 +18,7 @@
       ../../modules/users.nix
       ../../modules/entertainment.nix
       ../../modules/research.nix
+      ../../modules/security.nix
 
       ../../modules/work/iohk/binary-cache.nix
       ../../modules/cachix.nix
