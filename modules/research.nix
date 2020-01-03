@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    zotero xpdf
+    zotero 
+    # insecure?
+    # xpdf
   ];
 }
