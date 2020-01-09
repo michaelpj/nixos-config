@@ -36,7 +36,8 @@
     #arbtt.enable = true;
 
     printing.enable = true;
-    emacs.enable = true;
+    # just can't make it work well, usually issues with env vars
+    #emacs.enable = true;
   };
 
   programs = {
