@@ -20,6 +20,7 @@
       "networkmanager" 
       "vboxusers" 
       "libvirtd"
+      "docker"
     ];
     shell = pkgs.zsh;
     uid = 1000;

@@ -21,6 +21,7 @@
   virtualisation = {
     #virtualbox.host.enable = true;
     libvirtd.enable = true;
+    docker.enable = true;
   };
 
   networking.firewall.checkReversePath = false;
