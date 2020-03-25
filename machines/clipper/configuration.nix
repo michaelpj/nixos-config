@@ -26,8 +26,16 @@
 
   hardware = {
     trackpoint.emulateWheel = true;
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
+    bluetooth.enable = true;
+    pulseaudio = {
+      enable = true;
+      support32Bit = true;
+      package = pkgs.pulseaudioFull;
+      extraConfig = ''
+        unload-module module-bluetooth-policy
+        load-module module-bluetooth-policy auto_switch=2
+      '';
+    };
     opengl.driSupport32Bit = true;
     enableRedistributableFirmware = true;
   };
