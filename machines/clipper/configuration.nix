@@ -74,7 +74,7 @@
     hostId = "635f8603";
   };
   
-  system.stateVersion = "18.09";
+  system.stateVersion = "20.03";
 
   # TODO: move to nixos-hardware
 
