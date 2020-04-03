@@ -31,9 +31,13 @@
       enable = true;
       support32Bit = true;
       package = pkgs.pulseaudioFull;
+      # Reload the module-bluetooth-policy module with auto_switch=2,
+      # which makes it switch to the headset policy when an audio input
+      # stream appears.
       extraConfig = ''
         unload-module module-bluetooth-policy
         load-module module-bluetooth-policy auto_switch=2
+        load-module module-switch-on-connect
       '';
     };
     opengl.driSupport32Bit = true;
