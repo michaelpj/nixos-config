@@ -16,6 +16,7 @@
     evince okular
     konversation
     qemu
+    zoom-us
   ];
 
   virtualisation = {
