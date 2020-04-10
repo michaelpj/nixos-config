@@ -5,7 +5,10 @@ let
 in
 {
   # lets the webserver start so it can serve challenges
-  security.acme.preliminarySelfsigned = enableSsl;
+  security.acme = {
+    acceptTerms = true;
+    email = "me@michaelpj.com";
+  };
 
   services.nginx = {
     # Redirect bare domain to www
