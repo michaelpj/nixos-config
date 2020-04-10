@@ -13,11 +13,12 @@ in
         (import ../../modules/www.nix args)
         (import ../../modules/znc.nix)
         (import ../../modules/hostedFiles.nix args)
+        (import ../../modules/matrix.nix args)
       ];
 
-      services.nginx = {
-        enable = true;
+      networking.domain = domain;
 
+      services.nginx = {
         recommendedGzipSettings = true;
         recommendedOptimisation = true;
         recommendedProxySettings = true;
