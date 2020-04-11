@@ -14,6 +14,12 @@ in
       # virtual host for Matrix
       "${matrix}" = {
         inherit enableACME forceSSL;
+        listen = [
+          { addr = "0.0.0.0"; port = 8448; ssl = true; }
+          { addr = "[::]"; port = 8448; ssl = true; }
+          { addr = "0.0.0.0"; port = 443; ssl = true; }
+          { addr = "[::]"; port = 443; ssl = true; }
+        ];
 
         locations."/".proxyPass = "http://[::1]:${builtins.toString listenerPort}";
       };
@@ -48,7 +54,7 @@ in
         resources = [
           {
             compress = true;
-            names = ["client" "webclient" "federation"];
+            names = ["client" "federation"];
           }
         ];
       }
