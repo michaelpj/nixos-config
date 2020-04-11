@@ -14,9 +14,9 @@
     firefox
     yakuake konsole
     evince okular
-    konversation
     qemu
     zoom-us
+    riot-desktop
   ];
 
   virtualisation = {
