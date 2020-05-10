@@ -28,13 +28,6 @@
   networking.firewall.checkReversePath = false;
 
   services = {
-    keybase.enable = true;
-
-    kbfs = {
-      enable = true;
-      mountPoint = "/keybase";
-    };
-
     #arbtt.enable = true;
 
     printing.enable = true;
