@@ -1,9 +1,0 @@
-<?xml version="1.0"?> 
- <!-- BEGIN --> 
- <ThermalConfiguration> 
- <Platform>
-	<ProductName>20L7CTO1WW</ProductName>
-  <Name>T480s</Name>
-</Platform>
-</ThermalConfiguration>
-<!-- END -->

@@ -66,11 +66,7 @@
 
     # override nixos-hardware profile
     throttled.enable = false;
-  
-    thermald = {
-      enable = true;
-      configFile = ./thermald/thermal-conf.xml.minimal;
-    };
+    thermald.enable;
   };
 
   # zfs
