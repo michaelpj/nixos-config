@@ -63,6 +63,14 @@
       scrollMethod = "button";
     };
     fwupd.enable = true;
+
+    # override nixos-hardware profile
+    throttled.enable = false;
+  
+    thermald = {
+      enable = true;
+      configFile = ./thermald/thermal-conf.xml.auto;
+    };
   };
 
   # zfs
