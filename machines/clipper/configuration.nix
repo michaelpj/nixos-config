@@ -69,7 +69,7 @@
   
     thermald = {
       enable = true;
-      configFile = ./thermald/thermal-conf.xml.auto;
+      configFile = ./thermald/thermal-conf.xml.minimal;
     };
   };
 
