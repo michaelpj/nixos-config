@@ -32,7 +32,7 @@ in
       default = true;
       inherit enableACME forceSSL;
 
-      locations."/blog/".alias = pkgs.callPackage ../blog/default.nix {} + "/";
+      locations."/blog/".alias = (pkgs.callPackage ../blog/default.nix {}).blog + "/";
       locations."/".root = ../landing;
     };
 
