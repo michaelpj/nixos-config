@@ -16,7 +16,7 @@
     evince okular
     qemu
     zoom-us
-    riot-desktop
+    element-desktop
   ];
 
   virtualisation = {
