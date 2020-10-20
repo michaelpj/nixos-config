@@ -22,6 +22,7 @@
 
       ../../modules/work/iohk/binary-cache.nix
       ../../modules/cachix.nix
+      ../../modules/nixbuild.nix
     ];
 
   hardware = {
