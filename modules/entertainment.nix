@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     steam
     steam-run
-    lutris
+    #lutris
     spotify 
     vlc
   ];

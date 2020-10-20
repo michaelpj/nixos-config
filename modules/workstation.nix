@@ -17,6 +17,7 @@
     qemu
     zoom-us
     element-desktop
+    libreoffice
   ];
 
   virtualisation = {
@@ -24,6 +25,8 @@
     libvirtd.enable = true;
     docker.enable = true;
   };
+
+  boot.tmpOnTmpfs = true;
 
   networking.firewall.checkReversePath = false;
 
