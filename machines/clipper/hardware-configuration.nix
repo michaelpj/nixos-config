@@ -23,13 +23,13 @@
       fsType = "zfs";
     };
 
-  fileSystems."/home" =
-    { device = "tank/home";
+  fileSystems."/tank" =
+    { device = "tank";
       fsType = "zfs";
     };
 
-  fileSystems."/tank" =
-    { device = "tank";
+  fileSystems."/home" =
+    { device = "tank/home";
       fsType = "zfs";
     };
 
@@ -43,6 +43,6 @@
     ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  # High-DPI console
-  console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+  # high-resolution display
+  hardware.video.hidpi.enable = lib.mkDefault true;
 }
