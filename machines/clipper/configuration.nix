@@ -57,11 +57,14 @@
     fstrim.enable = true;
     xserver.libinput = {
       enable = true;
-      disableWhileTyping = true;
-      # Get scrolling when holding down the fn button on the elecom mouse
-      # It would be nice if I could scope this per-device?
-      scrollButton = 11;
-      scrollMethod = "button";
+      touchpad = {
+        disableWhileTyping = true;
+      };
+      mouse = {
+        # Get scrolling when holding down the fn button on the elecom mouse
+        scrollButton = 11;
+        scrollMethod = "button";
+      };
     };
     fwupd.enable = true;
 
