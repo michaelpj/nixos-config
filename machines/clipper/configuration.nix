@@ -72,6 +72,8 @@
     throttled.enable = false;
     thermald.enable = true;
   };
+  # remove when we get to kernel 5.12 or they backport the fix for the cpuid issue
+  systemd.services.thermald.serviceConfig.ExecStart = lib.mkForce "${pkgs.thermald}/sbin/thermald --no-daemon --dbus-enable --adaptive --ignore-cpuid-check";
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
