@@ -5,7 +5,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
-      <nixos-hardware/lenovo/thinkpad/t480s>
+      #<home-manager/nixos>
+      #../../modules/home-manager.nix
 
       ../../modules/nix.nix
       ../../modules/nixpkgs.nix
