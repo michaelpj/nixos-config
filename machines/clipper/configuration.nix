@@ -1,9 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, nixos-hardware, lib, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
       #<home-manager/nixos>
       #../../modules/home-manager.nix

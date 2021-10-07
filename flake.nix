@@ -11,17 +11,20 @@
         blog = blogStuff.blog;
         cv = pkgs.callPackage ./cv {};
       };
-    nixosConfigurations.clipper = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [ 
-        (import ./machines/clipper/configuration.nix) 
-        nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-        ({
-            # Let 'nixos-version --json' know about the Git revision
-            # of this flake.
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-        })
-      ];
+
+    nixosConfigurations = {
+      clipper = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ 
+          (import ./machines/clipper/configuration.nix) 
+          ({
+              # Let 'nixos-version --json' know about the Git revision
+              # of this flake.
+              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          })
+        ];
+        specialArgs = { inherit nixos-hardware; };
+      };
     };
 
   };
