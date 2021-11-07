@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs?rev=bcd607489d76795508c48261e1ad05f5d4b7672f";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
   outputs = { self, nixpkgs, nixos-hardware }: {
@@ -21,6 +21,11 @@
               # Let 'nixos-version --json' know about the Git revision
               # of this flake.
               system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+          })
+          ({
+              # For compatibility with other things, puts nixpkgs into NIX_PATH
+              environment.etc.nixpkgs.source = nixpkgs;
+              nix.nixPath = ["nixpkgs=/etc/nixpkgs"];
           })
         ];
         specialArgs = { inherit nixos-hardware; };
