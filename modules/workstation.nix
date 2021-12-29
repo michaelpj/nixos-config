@@ -17,7 +17,7 @@
     emacs vscode
     editorconfig-core-c
     pandoc
-    aspell aspellDicts.en aspellDicts.uk
+    aspell 
     # system
     iotop s-tui
     procs pstree
