@@ -12,10 +12,6 @@
     enable = true;
   };
 
-  services.redshift = {
-    enable = true;
-  };
-
   location = {
     provider = "geoclue2";
   };

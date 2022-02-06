@@ -3,13 +3,13 @@
 {
   nix = {
     package = pkgs.nixUnstable;
-    useSandbox = true;
-    buildCores = 0;
-    trustedUsers = [ "@wheel" ];
-    binaryCaches = [ "https://cache.nixos.org/" ];
-    extraOptions = ''
-      builders-use-substitutes = true
-      experimental-features = nix-command flakes
-    '';
+    settings = {
+      sandbox = true;
+      cores = 0;
+      trusted-users = [ "@wheel" ];
+      substituters = [ "https://cache.nixos.org/" ];
+      builders-use-substitutes = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
   };
 }
