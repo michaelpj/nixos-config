@@ -11,7 +11,7 @@ self: super:
       self.freetype
       self.dbus
       self.cairo
-      self.gdk_pixbuf
+      self.gdk-pixbuf
       self.pango
       self.xorg.libxcb
     ];
