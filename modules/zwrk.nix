@@ -9,8 +9,7 @@
     };
     extraConfig = ''
       Host x86_64-linux-1.zw3rk.com
-          User builder
-          PubkeyAcceptedKeyTypes ssh-ed25519
+          User michaelpj
           IdentityFile /root/.ssh/michaelpj
     '';
   };
