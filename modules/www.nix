@@ -9,7 +9,7 @@ in
   # lets the webserver start so it can serve challenges
   security.acme = {
     acceptTerms = true;
-    email = "me@michaelpj.com";
+    defaults.email = "me@michaelpj.com";
   };
 
   services.nginx = {

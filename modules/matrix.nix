@@ -38,27 +38,29 @@ in
 
   services.matrix-synapse = {
     enable = true;
-    # domain for the Matrix IDs
-    server_name = domain;
-    # enable metrics collection
-    enable_metrics = true;
-    # enable user registration
-    enable_registration = true;
-    # postgres is still a pain to set up with the right encodings...
-    database_type = "sqlite3";
-    # default http listener which nginx will passthrough to
-    listeners = [
-      {
-        port = listenerPort;
-        tls = false;
-        resources = [
-          {
-            compress = true;
-            names = ["client" "federation"];
-          }
-        ];
-      }
-    ];
+    settings = { 
+      # domain for the Matrix IDs
+      server_name = domain;
+      # enable metrics collection
+      enable_metrics = true;
+      # enable user registration
+      enable_registration = true;
+      # postgres is still a pain to set up with the right encodings...
+      database.name = "sqlite3";
+      # default http listener which nginx will passthrough to
+      listeners = [
+        {
+          port = listenerPort;
+          tls = false;
+          resources = [
+            {
+              compress = true;
+              names = ["client" "federation"];
+            }
+          ];
+        }
+      ];
+    };
   };
 
   networking.firewall.allowedTCPPorts = [
