@@ -20,7 +20,7 @@ in
     virtualHosts."${domain}" = {
       inherit enableACME forceSSL;
 
-      locations."/.well-known/".alias = "${../well-known}" + "/";
+      locations."= /.well-known/keybase.txt".alias = "${../well-known/keybase.txt}";
       locations."/" = {
         extraConfig = "return 301 $scheme://${www}$request_uri;";
       };

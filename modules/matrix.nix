@@ -1,8 +1,7 @@
 { domain, enableSsl, ... }:
 { config, pkgs, ... }:
 let
-  matrix = "matrix.${domain}";
-  riot = "riot.${domain}";
+  fqdn = "matrix.${domain}";
   enableACME = enableSsl;
   forceSSL = enableSsl;
   listenerPort = 8008;
@@ -12,7 +11,8 @@ in
     enable = true;
     virtualHosts = {
       # virtual host for Matrix
-      "${matrix}" = {
+      "${domain}" = {
+
         inherit enableACME forceSSL;
         listen = [
           { addr = "0.0.0.0"; port = 8448; ssl = true; }
@@ -21,44 +21,68 @@ in
           { addr = "[::]"; port = 443; ssl = true; }
         ];
 
-        locations."/".proxyPass = "http://[::1]:${builtins.toString listenerPort}";
+        locations."= /.well-known/matrix/server".extraConfig =
+          let
+            # use 443 instead of the default 8448 port to unite
+            # the client-server and server-server port for simplicity
+            server = { "m.server" = "${fqdn}:443"; };
+          in ''
+            add_header Content-Type application/json;
+            return 200 '${builtins.toJSON server}';
+          '';
+
+  			locations."= /.well-known/matrix/client".extraConfig =
+          let
+            client = {
+              "m.homeserver" =  { "base_url" = "https://${fqdn}"; };
+              "m.identity_server" =  { "base_url" = "https://vector.im"; };
+            };
+          # ACAO required to allow element-web on any URL to request this json file
+          in ''
+            add_header Content-Type application/json;
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
+            add_header Access-Control-Allow-Headers 'X-Requested-With, Content-Type, Authorization';
+            return 200 '${builtins.toJSON client}';
+          '';
       };
 
-      # virtual host for Riot/Web
-      #"${riot}" = {
-        #inherit enableACME forceSSL;
+      "${fqdn}" = {
+        inherit enableACME forceSSL;
 
-        ## root points to the riot-web package content
-        #locations."/" = {
-            #root = pkgs.riot-web;
-        #};
-      #};
+        locations."/".extraConfig = ''
+          return 404;
+        '';
+
+        locations."/_matrix".proxyPass = "http://[::1]:${builtins.toString listenerPort}";
+      };
     };
   };
 
   services.matrix-synapse = {
     enable = true;
     settings = { 
+      federation_domain_whitelist = [ "michaelpj.com" ];
       # domain for the Matrix IDs
       server_name = domain;
-      # enable metrics collection
-      enable_metrics = true;
-      # enable user registration
-      enable_registration = true;
       # postgres is still a pain to set up with the right encodings...
       database.name = "sqlite3";
       # default http listener which nginx will passthrough to
       listeners = [
         {
-          port = listenerPort;
-          tls = false;
-          resources = [
-            {
-              compress = true;
-              names = ["client" "federation"];
-            }
-          ];
-        }
+					port = listenerPort;
+					bind_addresses = [ "::1" ];
+					type = "http";
+					tls = false;
+					x_forwarded = true;
+					resources = [ {
+						names = [ "client" ];
+						compress = true;
+					} {
+						names = [ "federation" ];
+						compress = false;
+					} ];
+				}
       ];
     };
   };
