@@ -14,7 +14,10 @@
 
   users.extraUsers.root.openssh.authorizedKeys.keyFiles = [ ../../keys/github-mini.pub ];
 
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    memoryPercent = 200;
+  };
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "20.03";
