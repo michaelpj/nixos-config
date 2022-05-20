@@ -12,7 +12,6 @@ in
       imports = [ 
         (import ../../modules/www.nix args)
         (import ../../modules/hostedFiles.nix args)
-        (import ../../modules/matrix.nix args)
       ];
 
       networking.domain = domain;
