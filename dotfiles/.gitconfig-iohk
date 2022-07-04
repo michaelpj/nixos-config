@@ -1,0 +1,5 @@
+[user]
+  email = michael.peyton-jones@iohk.io
+  signingKey = F40F9F2B29F64616
+[commit]
+  gpgsign = true

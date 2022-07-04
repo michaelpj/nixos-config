@@ -1,0 +1,54 @@
+[user]
+  name = Michael Peyton Jones
+  email = me@michaelpj.com
+  signingKey = 86A43C24A728F66D
+[core]
+  editor = vim
+  pager = delta
+[commit]
+  gpgsign = true
+[interactive]
+  diffFilter = delta --color-only
+[diff]
+  algorithm = histogram
+  mnemonicPrefix = true
+  colorMoved = default
+[delta]
+  navigate = true
+  line-numbers = true
+  side-by-side = true
+  hyperlinks = true
+[merge]
+  conflictstyle = diff3
+[rerere]
+  enabled = false
+[push]
+  default = simple
+[status]
+  short = true
+  branch = true
+  submoduleSummary = true
+[alias]
+  nb = checkout -b
+  nbu = !"f() { git checkout -b $1 && git push -u origin $1; }; f"
+  co = checkout
+  ca = !"f() { git checkout $1 && git submodule update --init --recursive; }; f"
+  sb = !"git ca $(git branch-by-date | tac | hs | cut -f2 -d' ')"
+  cm = commit -m
+  ci = commit -v
+  b = branch -a
+  s = status 
+  su = submodule update --init --recursive
+  amend = commit --amend
+  branch-purge = !"git branch --merged | grep -v 'master' | grep -v '*' | while read branch; do git del-lrf $branch; done"
+  del-lr = !"f() { git branch -d $1 && git push origin --delete $1; }; f"
+  del-lrf = !"f() { git branch -D $1 && git push origin --delete $1; }; f"
+  branch-by-date = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)' 
+  wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' --no-merged master refs/heads 
+  where-merged = !"bash -c 'f() {  git rev-list $0..HEAD --ancestry-path | grep -f <(git rev-list $0..HEAD --first-parent) | tail -1; }; f'"
+  conflicts = diff --name-only --diff-filter=U
+  rebase-onto = !"f() { git rebase --onto $1 $(git merge-base HEAD $1); }; f"
+  pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+[pull]
+  ff = only

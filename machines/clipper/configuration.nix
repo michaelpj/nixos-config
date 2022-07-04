@@ -1,4 +1,4 @@
-{ config, pkgs, nixos-hardware, lib, ... }:
+{ config, pkgs, nixos-hardware, home-manager, lib, ... }:
 
 {
   imports =
@@ -6,8 +6,8 @@
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
-      #<home-manager/nixos>
-      #../../modules/home-manager.nix
+      home-manager.nixosModules.home-manager
+      ../../modules/home-manager.nix
 
       ../../modules/nix.nix
       ../../modules/nixpkgs.nix
@@ -18,8 +18,6 @@
       ../../modules/graphical.nix
       ../../modules/laptop.nix
       ../../modules/users.nix
-      ../../modules/entertainment.nix
-      ../../modules/research.nix
       ../../modules/security.nix
 
       ../../modules/work/iohk/binary-cache.nix

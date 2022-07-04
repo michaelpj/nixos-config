@@ -6,9 +6,12 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager }: {
 
     packages."x86_64-linux" = 
       let pkgs = import nixpkgs { system = "x86_64-linux"; }; 
@@ -34,7 +37,7 @@
               nix.nixPath = ["nixpkgs=/etc/nixpkgs"];
           })
         ];
-        specialArgs = { inherit nixos-hardware; };
+        specialArgs = { inherit nixos-hardware home-manager; };
       };
     };
 
