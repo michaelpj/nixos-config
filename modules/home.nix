@@ -88,7 +88,7 @@
         ];
         editor.keymap = "vi";
       };
-      initExtra = builtins.readFile ../dotfiles/.zshrc;
+      initExtra = builtins.readFile ../dotfiles/.zshrc + builtins.readFile ../dotfiles/.p10k.zsh;
     };
   };
 
