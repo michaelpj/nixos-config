@@ -52,9 +52,6 @@
 
     # I don't really care about these issues on my laptop
     kernelParams = [ "mitigations=off" ];
-
-    # 5.15 is LTS now
-    kernelPackages = pkgs.linuxKernel.packages.linux_5_15;
   };
 
   services = {
