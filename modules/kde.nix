@@ -9,7 +9,7 @@
   };
 
   environment.systemPackages = [ 
-    pkgs.kdeconnect 
+    pkgs.plasma5Packages.kdeconnect-kde
     # this doesn't do much, but makes it easier to see the settings
     pkgs.sddm-kcm
   ];

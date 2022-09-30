@@ -28,7 +28,7 @@
       source-sans-pro
       source-serif-pro
       dejavu_fonts
-      iosevka
+      iosevka-bin
     ];
   };
 

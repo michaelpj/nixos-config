@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # build-essentials
-    binutils gcc gnumake pkgconfig python ruby
+    binutils gcc gnumake pkg-config python ruby
     # utilities
     wget zip unzip rsync  
     fd ripgrep heatseeker
