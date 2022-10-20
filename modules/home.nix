@@ -93,7 +93,6 @@
   };
 
   services = {
-    lorri.enable = true;
     gpg-agent = {
       enable = true;
       # one day
