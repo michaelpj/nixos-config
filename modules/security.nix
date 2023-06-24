@@ -10,7 +10,7 @@
     pkgs.yubikey-personalization
     pkgs.yubikey-personalization-gui
     pkgs.yubikey-manager
-    pkgs.yubikey-manager-qt
+    #pkgs.yubikey-manager-qt
     pkgs.yubioath-flutter
   ];
 }

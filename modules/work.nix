@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # build-essentials
-    binutils gcc gnumake pkg-config python ruby
+    binutils gcc gnumake pkg-config ruby
     # utilities
     wget zip unzip rsync  
     fd ripgrep heatseeker
@@ -27,7 +27,8 @@
     gh tig
     gitAndTools.diff-so-fancy
     # dev
-    cabal-install ghc haskellPackages.ghc-prof-flamegraph hlint stylish-haskell
+    haskellPackages.ghc haskellPackages.haskell-language-server
+    cabal-install haskellPackages.ghc-prof-flamegraph hlint stylish-haskell 
     python3
     flamegraph
     qemu
@@ -43,7 +44,8 @@
     firefox google-chrome
     yakuake konsole
     evince okular
-    libreoffice
+    #libreoffice
     gimp
+    #biscuit-cli
   ];
 }

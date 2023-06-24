@@ -56,15 +56,18 @@
 
   services = {
     fstrim.enable = true;
-    xserver.libinput = {
-      enable = true;
-      touchpad = {
-        disableWhileTyping = true;
-      };
-      mouse = {
-        # Get scrolling when holding down the fn button on the elecom mouse
-        scrollButton = 11;
-        scrollMethod = "button";
+    xserver = { 
+      #videoDrivers = [ "displaylink" "modesetting" ];
+      libinput = {
+        enable = true;
+        touchpad = {
+          disableWhileTyping = true;
+        };
+        mouse = {
+          # Get scrolling when holding down the fn button on the elecom mouse
+          scrollButton = 11;
+          scrollMethod = "button";
+        };
       };
     };
     fwupd.enable = true;
@@ -82,6 +85,8 @@
     hostName = "clipper"; 
     hostId = "635f8603";
   };
+
+  virtualisation.docker.enable = true;
   
   system.stateVersion = "20.03";
 
@@ -91,4 +96,5 @@
     START_CHARGE_THRESH_BAT0 = 75;
     STOP_CHARGE_THRESH_BAT0 = 80;
   };
+
 }
