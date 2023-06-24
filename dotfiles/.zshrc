@@ -45,3 +45,6 @@ fuzzySelectEval() {
     eval "$CMD"
   fi
 }
+
+EDITOR=vim
+VISUAL=gvim
