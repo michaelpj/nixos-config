@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
 
   networking.firewall.checkReversePath = false;
 

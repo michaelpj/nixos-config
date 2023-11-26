@@ -71,6 +71,8 @@
       enable = true;
       prezto = {
         enable = true;
+        # https://github.com/nix-community/home-manager/issues/2255
+        caseSensitive = true;
         prompt.theme = "powerlevel10k";
         pmodules = [
           "environment"

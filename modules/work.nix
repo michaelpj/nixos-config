@@ -44,7 +44,7 @@
     firefox google-chrome
     yakuake konsole
     evince okular
-    #libreoffice
+    libreoffice
     gimp
     #biscuit-cli
   ];
