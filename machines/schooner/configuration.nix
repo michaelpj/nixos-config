@@ -71,10 +71,6 @@
       };
     };
     fwupd.enable = true;
-
-    # override nixos-hardware profile
-    throttled.enable = false;
-    thermald.enable = true;
   };
 
   # zfs
@@ -82,19 +78,12 @@
   services.zfs.autoScrub.enable = true;
 
   networking = {
-    hostName = "clipper"; 
+    hostName = "schooner"; 
     hostId = "635f8603";
+    # oops, messed up here
+    #hostId = "0aaddb32";
   };
-
-  virtualisation.docker.enable = true;
   
-  system.stateVersion = "20.03";
-
-  # TODO: move to nixos-hardware
-
-  services.tlp.settings = {
-    START_CHARGE_THRESH_BAT0 = 75;
-    STOP_CHARGE_THRESH_BAT0 = 80;
-  };
+  system.stateVersion = "23.05";
 
 }
