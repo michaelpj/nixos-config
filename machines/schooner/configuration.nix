@@ -44,6 +44,8 @@
     };
     opengl.driSupport32Bit = true;
     enableRedistributableFirmware = true;
+    # this is on by default but let's make sure so we can set it
+    wirelessRegulatoryDatabase = true;
   };
 
   boot = {
@@ -52,6 +54,12 @@
 
     # I don't really care about these issues on my laptop
     kernelParams = [ "mitigations=off" ];
+    # See if this helps stuff
+    kernelPackages = pkgs.linuxPackages_latest;
+    # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
+    extraModprobeConfig = ''
+      options cfg80211 ieee80211_regdom="GB"
+    '';
   };
 
   services = {
