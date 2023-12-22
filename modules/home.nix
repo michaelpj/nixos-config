@@ -47,8 +47,8 @@
       enable = true;
       package = pkgs.gitAndTools.gitFull;
       includes = [
-        { path = ../dotfiles/.gitconfig; }
-        { condition = "gitdir:iohk/"; path = ../dotfiles/.gitconfig-iohk; }
+        { path = ../dotfiles/gitconfig; }
+        { condition = "gitdir:iohk/"; path = ../dotfiles/gitconfig-iohk; }
       ];
     };
     gh.enable = true;
