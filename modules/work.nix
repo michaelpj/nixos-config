@@ -41,11 +41,15 @@
     # audio
     pavucontrol alsa-utils
     # desktop
-    firefox google-chrome
+    google-chrome
     yakuake konsole
     evince okular
     libreoffice
     gimp
     #biscuit-cli
   ];
+
+  programs.firefox = {
+    enable = true;
+  };
 }

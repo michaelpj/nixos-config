@@ -51,7 +51,13 @@
         { condition = "gitdir:iohk/"; path = ../dotfiles/gitconfig-iohk; }
       ];
     };
-    gh.enable = true;
+    gh = {
+      enable = true;
+      settings = {
+        # Workaround for https://github.com/nix-community/home-manager/issues/4744
+        version = 1;
+      };
+    };
     vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
@@ -101,6 +107,7 @@
       maxCacheTtl = 86400;
       # six hours
       defaultCacheTtl = 21600;
+      pinentryFlavor = "curses";
     };
   };
 }
