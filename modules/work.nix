@@ -10,6 +10,7 @@
     graphviz
     jq
     plantuml
+    tmuxinator
     # text
     emacs vscode
     editorconfig-core-c
