@@ -52,10 +52,15 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    # I don't really care about these issues on my laptop
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ 
+      # I don't really care about these issues on my laptop
+      "mitigations=off" 
+      # might help with display isusues
+      # https://wiki.archlinux.org/title/Framework_Laptop_13#(AMD)_Flickering,_artifacts_and_a_white_screen_when_a_second_monitor_is_connected
+      "amdgpu.sg_display=0"
+    ];
     # See if this helps stuff
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_6;
     # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"
