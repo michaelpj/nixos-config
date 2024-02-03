@@ -16,6 +16,7 @@
       ../../modules/locales.nix
       ../../modules/workstation.nix
       ../../modules/graphical.nix
+      ../../modules/sound.nix
       ../../modules/laptop.nix
       ../../modules/users.nix
       ../../modules/security.nix
@@ -29,19 +30,20 @@
   hardware = {
     trackpoint.emulateWheel = true;
     bluetooth.enable = true;
-    pulseaudio = {
-      enable = true;
-      support32Bit = true;
-      package = pkgs.pulseaudioFull;
+    #pulseaudio = {
+      #enable = true;
+      #support32Bit = true;
+      #package = pkgs.pulseaudioFull;
       # Reload the module-bluetooth-policy module with auto_switch=2,
       # which makes it switch to the headset policy when an audio input
       # stream appears.
-      extraConfig = ''
-        unload-module module-bluetooth-policy
-        load-module module-bluetooth-policy auto_switch=2
-        load-module module-switch-on-connect
-      '';
-    };
+      #extraConfig = ''
+        #unload-module module-bluetooth-policy
+    
+        #load-module module-bluetooth-policy auto_switch=2
+        #load-module module-switch-on-connect
+      #'';
+    #};
     opengl.driSupport32Bit = true;
     enableRedistributableFirmware = true;
     # this is on by default but let's make sure so we can set it

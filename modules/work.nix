@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     # build-essentials
@@ -38,7 +37,7 @@
     nix-prefetch-git cachix niv nix-diff nix-du nix-top #nixops
     # comms
     element-desktop slack zoom-us discord signal-desktop
-    skypeforlinux
+    skypeforlinux zulip
     # audio
     pavucontrol alsa-utils
     # desktop
@@ -48,6 +47,7 @@
     libreoffice
     gimp
     #biscuit-cli
+    logseq
   ];
 
   programs.firefox = {
