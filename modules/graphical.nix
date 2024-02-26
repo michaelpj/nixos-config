@@ -4,8 +4,10 @@
   imports = [ ./kde.nix ];
   services.xserver = {
     enable = true;
-    layout = "gb";
-    xkbOptions = "caps:escape";
+    xkb = {
+      layout = "gb";
+      options = "caps:escape";
+    };
   };
 
   boot.plymouth = {
