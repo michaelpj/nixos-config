@@ -12,7 +12,7 @@
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
 
-  users.extraUsers.root.openssh.authorizedKeys.keyFiles = [ ../../keys/github-mini.pub ];
+  users.extraUsers.root.openssh.authorizedKeys.keyFiles = [ ../../keys/laptop-standard.pub ];
 
   zramSwap = {
     enable = true;

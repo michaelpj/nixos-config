@@ -24,6 +24,6 @@
     ];
     shell = pkgs.zsh;
     uid = 1000;
-    openssh.authorizedKeys.keyFiles = [ ../keys/github-mini.pub ];
+    openssh.authorizedKeys.keyFiles = [ ../keys/laptop-standard.pub ];
   };
 }
