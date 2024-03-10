@@ -9,9 +9,12 @@
     home-manager = {
       url = "github:nix-community/home-manager";
     };
+    nixinate = {
+      url = "github:matthewcroughan/nixinate";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixinate }: {
 
     packages."x86_64-linux" = 
       let pkgs = import nixpkgs { system = "x86_64-linux"; }; 
@@ -20,6 +23,8 @@
         blog = blogStuff.blog;
         cv = pkgs.callPackage ./cv {};
       };
+
+    apps = nixinate.nixinate.x86_64-linux self;
 
     nixosConfigurations = {
       clipper = nixpkgs.lib.nixosSystem {
@@ -56,7 +61,19 @@
         ];
         specialArgs = { inherit nixos-hardware home-manager; };
       };
+      vps = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules =
+          [ ./machines/vultr/configuration.nix
+            (import ./logical/michaelpj.com/server.nix {})
+            {
+              _module.args.nixinate = {
+                host = "michaelpj.com"; # "45.63.99.65";
+                sshUser = "michael";
+              };
+            }
+          ];
+      };
     };
-
   };
 }

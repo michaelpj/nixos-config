@@ -3,24 +3,19 @@ let
   # using an @ binding doesn't seem to work with optional args
   args = { inherit domain enableSsl; };
 in
+{ config, pkgs, ... }:
 {
-  network.description = domain;
+  imports = [
+    (import ../../modules/www.nix args)
+    (import ../../modules/hostedFiles.nix args)
+  ];
 
-  server = 
-    { config, pkgs, ... }:
-    {
-      imports = [ 
-        (import ../../modules/www.nix args)
-        (import ../../modules/hostedFiles.nix args)
-      ];
+  networking.domain = domain;
 
-      networking.domain = domain;
-
-      services.nginx = {
-        recommendedGzipSettings = true;
-        recommendedOptimisation = true;
-        recommendedProxySettings = true;
-        recommendedTlsSettings = true;
-      };
-    };
+  services.nginx = {
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
 }
