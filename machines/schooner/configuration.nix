@@ -16,20 +16,6 @@
   hardware = {
     trackpoint.emulateWheel = true;
     bluetooth.enable = true;
-    #pulseaudio = {
-      #enable = true;
-      #support32Bit = true;
-      #package = pkgs.pulseaudioFull;
-      # Reload the module-bluetooth-policy module with auto_switch=2,
-      # which makes it switch to the headset policy when an audio input
-      # stream appears.
-      #extraConfig = ''
-        #unload-module module-bluetooth-policy
-    
-        #load-module module-bluetooth-policy auto_switch=2
-        #load-module module-switch-on-connect
-      #'';
-    #};
     opengl.driSupport32Bit = true;
     enableRedistributableFirmware = true;
     # this is on by default but let's make sure so we can set it
@@ -54,20 +40,6 @@
 
   services = {
     fstrim.enable = true;
-    xserver = { 
-      #videoDrivers = [ "displaylink" "modesetting" ];
-      libinput = {
-        enable = true;
-        touchpad = {
-          disableWhileTyping = true;
-        };
-        mouse = {
-          # Get scrolling when holding down the fn button on the elecom mouse
-          scrollButton = 11;
-          scrollMethod = "button";
-        };
-      };
-    };
     fwupd.enable = true;
   };
 
