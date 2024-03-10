@@ -9,22 +9,8 @@
       home-manager.nixosModules.home-manager
       ../../modules/home-manager.nix
 
-      ../../modules/nix.nix
-      ../../modules/nixpkgs.nix
-      ../../modules/networking.nix
       ../../modules/basics.nix
-      ../../modules/locales.nix
-      ../../modules/workstation.nix
-      ../../modules/graphical.nix
-      ../../modules/sound.nix
       ../../modules/laptop.nix
-      ../../modules/users.nix
-      ../../modules/security.nix
-
-      ../../modules/work/iohk/binary-cache.nix
-      ../../modules/cachix.nix
-      ../../modules/nixbuild.nix
-      ../../modules/zwrk.nix
     ];
 
   hardware = {

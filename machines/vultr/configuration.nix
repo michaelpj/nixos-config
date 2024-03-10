@@ -4,15 +4,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/basics.nix
-      ../../modules/locales.nix
-      ../../modules/users.nix
     ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
-
-  users.extraUsers.root.openssh.authorizedKeys.keyFiles = [ ../../keys/laptop-standard.pub ];
 
   zramSwap = {
     enable = true;

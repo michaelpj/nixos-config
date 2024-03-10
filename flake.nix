@@ -46,6 +46,7 @@
         system = "x86_64-linux";
         modules = [ 
           (import ./machines/clipper/configuration.nix)
+          (import ./profilese/dev.nix)
           revModule
           localNixpkgsModule
         ];
@@ -54,7 +55,8 @@
       schooner = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ 
-          (import ./machines/schooner/configuration.nix) 
+          (import ./machines/schooner/configuration.nix)
+          (import ./profilese/dev.nix)
           revModule
           localNixpkgsModule
         ];
@@ -64,7 +66,7 @@
         system = "x86_64-linux";
         modules = [
           (./machines/vultr/configuration.nix)
-          (import ./logical/michaelpj.com/server.nix {})
+          (import ./profiles/michaelpj.com/server.nix {})
           {
             _module.args.nixinate = {
               host = "michaelpj.com"; # "45.63.99.65";
