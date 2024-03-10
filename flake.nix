@@ -46,7 +46,7 @@
         system = "x86_64-linux";
         modules = [ 
           (import ./machines/clipper/configuration.nix)
-          (import ./profilese/dev.nix)
+          (import ./profiles/dev.nix)
           revModule
           localNixpkgsModule
         ];
@@ -56,7 +56,7 @@
         system = "x86_64-linux";
         modules = [ 
           (import ./machines/schooner/configuration.nix)
-          (import ./profilese/dev.nix)
+          (import ./profiles/dev.nix)
           revModule
           localNixpkgsModule
         ];

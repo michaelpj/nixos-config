@@ -11,5 +11,5 @@
   };
 
   # make sure we _can_ ssh in
-  users.extraUsers.root.openssh.authorizedKeys.keyFiles = [ ../../keys/laptop-standard.pub ];
+  users.extraUsers.root.openssh.authorizedKeys.keyFiles = [ ../keys/laptop-standard.pub ];
 }
