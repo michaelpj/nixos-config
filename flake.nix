@@ -66,7 +66,7 @@
         system = "x86_64-linux";
         modules = [
           (./machines/vultr/configuration.nix)
-          (import ./profiles/michaelpj.com/server.nix {})
+          (import ./profiles/vps.nix {})
           {
             _module.args.nixinate = {
               host = "michaelpj.com"; # "45.63.99.65";

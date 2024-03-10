@@ -6,11 +6,11 @@ in
 { config, pkgs, ... }:
 {
   imports = [
-    (import ../../modules/www.nix args)
-    (import ../../modules/hostedFiles.nix args)
-    (../../modules/basics.nix)
-    (../../modules/locales.nix)
-    (../../modules/users.nix)
+    (import ../modules/www.nix args)
+    (import ../modules/hostedFiles.nix args)
+    (../modules/basics.nix)
+    (../modules/locales.nix)
+    (../modules/users.nix)
   ];
 
   networking.domain = domain;
