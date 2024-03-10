@@ -16,6 +16,7 @@
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, nixinate }: {
 
+
     packages."x86_64-linux" = 
       let pkgs = import nixpkgs { system = "x86_64-linux"; }; 
           blogStuff = pkgs.callPackage ./blog {};
@@ -26,21 +27,27 @@
 
     apps = nixinate.nixinate.x86_64-linux self;
 
-    nixosConfigurations = {
-      clipper = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ 
-          (import ./machines/clipper/configuration.nix) 
-          ({
+    nixosConfigurations =
+      let
+        revModule =
+          {
               # Let 'nixos-version --json' know about the Git revision
               # of this flake.
               system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-          })
-          ({
+          };
+        localNixpkgsModule =
+          {
               # For compatibility with other things, puts nixpkgs into NIX_PATH
               environment.etc.nixpkgs.source = nixpkgs;
               nix.nixPath = ["nixpkgs=/etc/nixpkgs"];
-          })
+          };
+      in {
+      clipper = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ 
+          (import ./machines/clipper/configuration.nix)
+          revModule
+          localNixpkgsModule
         ];
         specialArgs = { inherit nixos-hardware home-manager; };
       };
@@ -48,31 +55,23 @@
         system = "x86_64-linux";
         modules = [ 
           (import ./machines/schooner/configuration.nix) 
-          ({
-              # Let 'nixos-version --json' know about the Git revision
-              # of this flake.
-              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-          })
-          ({
-              # For compatibility with other things, puts nixpkgs into NIX_PATH
-              environment.etc.nixpkgs.source = nixpkgs;
-              nix.nixPath = ["nixpkgs=/etc/nixpkgs"];
-          })
+          revModule
+          localNixpkgsModule
         ];
         specialArgs = { inherit nixos-hardware home-manager; };
       };
       vps = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules =
-          [ ./machines/vultr/configuration.nix
-            (import ./logical/michaelpj.com/server.nix {})
-            {
-              _module.args.nixinate = {
-                host = "michaelpj.com"; # "45.63.99.65";
-                sshUser = "michael";
-              };
-            }
-          ];
+        modules = [
+          (./machines/vultr/configuration.nix)
+          (import ./logical/michaelpj.com/server.nix {})
+          {
+            _module.args.nixinate = {
+              host = "michaelpj.com"; # "45.63.99.65";
+              sshUser = "michael";
+            };
+          }
+        ];
       };
     };
   };
