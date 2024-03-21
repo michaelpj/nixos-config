@@ -5,7 +5,13 @@
     binutils gcc gnumake pkg-config ruby
     # utilities
     wget zip unzip rsync  
-    fd ripgrep heatseeker
+
+    fd ripgrep 
+
+    heatseeker fzf
+
+    zoxide h
+
     graphviz
     jq
     plantuml

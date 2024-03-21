@@ -16,13 +16,6 @@ alias tmux='tmux -2'
 alias em='emacsclient -nw --alternate-editor=""'
 alias emw='emacsclient --alternate-editor=""'
 
-# fasd aliases
-alias a='fasd -a'        # any
-alias s='fasd -si'       # show / search / select
-alias d='fasd -d'        # directory
-alias f='fasd -f'        # file
-alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-
 # fuzzy select pid
 alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | hs | sed 's/^ *//' | cut -f1 -d' '"
 
@@ -48,3 +41,6 @@ fuzzySelectEval() {
 
 EDITOR=vim
 VISUAL=gvim
+
+eval "$(zoxide init zsh)"
+eval "$(h --setup ~/code)"
