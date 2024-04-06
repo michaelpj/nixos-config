@@ -110,7 +110,7 @@
       maxCacheTtl = 86400;
       # six hours
       defaultCacheTtl = 21600;
-      pinentryFlavor = "curses";
+      pinentryPackage = pkgs.pinentry-qt;
     };
   };
 }

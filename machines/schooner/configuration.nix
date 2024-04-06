@@ -39,6 +39,9 @@
   };
 
   services = {
+    fprintd = {
+      enable = true;
+    };
     fstrim.enable = true;
     fwupd.enable = true;
   };

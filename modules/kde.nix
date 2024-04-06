@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
+  services.desktopManager.plasma6.enable = true;
+
   services.xserver = {
-    desktopManager.plasma6.enable = true;
     displayManager.sddm = {
       enable = true;
       enableHidpi = true;
