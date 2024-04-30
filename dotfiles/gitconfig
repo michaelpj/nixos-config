@@ -33,7 +33,7 @@
   nbu = !"f() { git checkout -b $1 && git push -u origin $1; }; f"
   co = checkout
   ca = !"f() { git checkout $1 && git submodule update --init --recursive; }; f"
-  sb = !"git ca $(git branch-by-date | tac | hs | cut -f2 -d' ')"
+  sb = !"git ca $(git branch-by-date | tac | fzf --reverse --height=20% | cut -f2 -d' ')"
   cm = commit -m
   ci = commit -v
   b = branch -a

@@ -8,7 +8,7 @@
 
     fd ripgrep 
 
-    heatseeker fzf
+    fzf
 
     zoxide h
 
