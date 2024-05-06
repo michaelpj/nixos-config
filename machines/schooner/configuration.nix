@@ -31,7 +31,7 @@
       "mitigations=off" 
     ];
     # See if this helps stuff
-    kernelPackages = pkgs.linuxPackages_6_7;
+    kernelPackages = pkgs.linuxPackages_6_8;
     # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"

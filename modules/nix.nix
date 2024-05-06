@@ -2,7 +2,6 @@
 
 {
   nix = {
-    package = pkgs.nixUnstable;
     settings = {
       sandbox = true;
       cores = 0;
