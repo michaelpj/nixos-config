@@ -52,6 +52,7 @@
         { condition = "gitdir:input-output-hk/"; path = ../dotfiles/gitconfig-iohk; }
         { condition = "gitdir:IntersectMBO/"; path = ../dotfiles/gitconfig-iohk; }
         { condition = "gitdir:cardano-foundation/"; path = ../dotfiles/gitconfig-iohk; }
+        { condition = "gitdir:circuithub/"; path = ../dotfiles/gitconfig-circuithub; }
       ];
     };
     gh = {

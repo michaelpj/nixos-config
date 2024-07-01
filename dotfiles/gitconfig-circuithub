@@ -1,0 +1,5 @@
+[user]
+  email = michael.peyton.jones@circuithub.com
+  signingKey = A33EB3C2BFDEDD10
+[commit]
+  gpgsign = true
