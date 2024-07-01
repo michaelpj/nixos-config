@@ -14,7 +14,10 @@
       ../modules/security.nix
 
       ../modules/work/iohk/binary-cache.nix
+
       ../modules/work/circuithub/binary-cache.nix
+      ../modules/work/circuithub/tailscale.nix
+
       ../modules/cachix.nix
       ../modules/nixbuild.nix
       ../modules/zwrk.nix
