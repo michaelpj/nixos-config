@@ -54,6 +54,7 @@
     gimp
     #biscuit-cli
     logseq
+    vault
   ];
 
   programs.firefox = {
