@@ -17,7 +17,7 @@ alias em='emacsclient -nw --alternate-editor=""'
 alias emw='emacsclient --alternate-editor=""'
 
 # fuzzy select pid
-alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | hs | sed 's/^ *//' | cut -f1 -d' '"
+alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | fzf --reverse --height=20% | sed 's/^ *//' | cut -f1 -d' '"
 
 # nix aliases
 alias ns='nix-shell'
@@ -27,17 +27,7 @@ NIXBUILD_BUILDERS="ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,bench
 ZWRK_BUILDERS="ssh://x86_64-linux-1.zw3rk.com x86_64-linux - 10 1 big-parallel,benchmark"
 alias nbr='nix build -f default.nix -L --builders "$REMOTE_BUILDERS"'
 
-alias vf="vim \$(ls | hs)"
-
-fuzzySelectEval() {
-  OUTPUT=$(eval "$1" | hs --search "$3" | tr '\n' ' ') 
-  if [ -n "$OUTPUT" ]
-  then
-    CMD="$2 $OUTPUT"
-    print -s "$CMD"
-    eval "$CMD"
-  fi
-}
+alias vf="vim \$(ls | fzf --reverse --height=20%)"
 
 EDITOR=vim
 VISUAL=gvim
