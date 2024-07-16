@@ -13,11 +13,9 @@
       ../modules/users.nix
       ../modules/security.nix
 
-      ../modules/work/iohk/binary-cache.nix
+      ../modules/work/iohk.nix
 
-      ../modules/work/circuithub/binary-cache.nix
-      ../modules/work/circuithub/tailscale.nix
-      ../modules/work/circuithub/rabbitmq.nix
+      ../modules/work/circuithub.nix
 
       ../modules/cachix.nix
       ../modules/nixbuild.nix
