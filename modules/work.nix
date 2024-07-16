@@ -40,7 +40,7 @@
     qemu
     go-jira
     # nix
-    nix-prefetch-git cachix niv nix-diff nix-du nix-top #nixops
+    nix-prefetch-git cachix niv nix-diff nix-du #nixops
     # comms
     element-desktop slack zoom-us discord signal-desktop
     skypeforlinux zulip

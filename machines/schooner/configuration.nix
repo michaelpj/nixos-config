@@ -16,7 +16,7 @@
   hardware = {
     trackpoint.emulateWheel = true;
     bluetooth.enable = true;
-    opengl.driSupport32Bit = true;
+    graphics.enable32Bit = true;
     enableRedistributableFirmware = true;
     # this is on by default but let's make sure so we can set it
     wirelessRegulatoryDatabase = true;
@@ -29,6 +29,7 @@
     kernelParams = [ 
       # I don't really care about these issues on my laptop
       "mitigations=off" 
+      "amdgpu.sg_display=0"
     ];
     # See if this helps stuff
     kernelPackages = pkgs.linuxPackages_6_8;

@@ -16,7 +16,7 @@
   hardware = {
     trackpoint.emulateWheel = true;
     bluetooth.enable = true;
-    opengl.driSupport32Bit = true;
+    graphics.enable32Bit = true;
     enableRedistributableFirmware = true;
   };
 
