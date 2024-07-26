@@ -1,5 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  environment.systemPackage = [ 1password ];
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "michael" ];
+  };
 }
