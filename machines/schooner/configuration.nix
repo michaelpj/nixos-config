@@ -51,6 +51,8 @@
   boot.supportedFilesystems = [ "zfs" ];
   services.zfs.autoScrub.enable = true;
 
+  virtualisation.docker.enable = true;
+
   networking = {
     hostName = "schooner"; 
     hostId = "635f8603";

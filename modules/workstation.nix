@@ -12,6 +12,5 @@
   programs = {
     # want to remember keys on here
     ssh.startAgent = true;
-    hamster.enable = true;
   };
 }
