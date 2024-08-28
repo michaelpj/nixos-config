@@ -17,7 +17,8 @@
     plantuml
     tmuxinator
     # text
-    emacs vscode
+    # emacs 
+    vscode
     editorconfig-core-c
     pandoc
     aspell 
@@ -32,6 +33,7 @@
     # vc
     gh tig
     gitAndTools.diff-so-fancy
+    jujutsu
     # dev
     haskellPackages.ghc haskellPackages.haskell-language-server
     cabal-install haskellPackages.ghc-prof-flamegraph hlint stylish-haskell 

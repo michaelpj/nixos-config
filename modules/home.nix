@@ -34,6 +34,7 @@
   programs = {
     home-manager.enable = true;
     direnv.enable = true;
+    emacs.enable = true;
     bash = {
       enable = true;
       initExtra = builtins.readFile ../dotfiles/.bashrc;
@@ -60,6 +61,15 @@
       settings = {
         # Workaround for https://github.com/nix-community/home-manager/issues/4744
         version = 1;
+      };
+    };
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "Michael Peyton Jones";
+          email = "me@michaelpj.com";
+        };
       };
     };
     vim = {

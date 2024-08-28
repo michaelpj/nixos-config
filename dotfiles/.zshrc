@@ -32,5 +32,8 @@ alias vf="vim \$(ls | fzf --reverse --height=20%)"
 EDITOR=vim
 VISUAL=gvim
 
+# jj seems broken without -r?
+LESS="-g -i -M -S -w -z-4 -r"
+
 eval "$(zoxide init zsh)"
 eval "$(h --setup ~/code)"
