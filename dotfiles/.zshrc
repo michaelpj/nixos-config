@@ -33,7 +33,8 @@ EDITOR=vim
 VISUAL=gvim
 
 # jj seems broken without -r?
-LESS="-g -i -M -S -w -z-4 -r"
+# -F quits if less than one screen, good for jj
+LESS="-g -i -M -S -w -z-4 -r -F -X"
 
 eval "$(zoxide init zsh)"
 eval "$(h --setup ~/code)"

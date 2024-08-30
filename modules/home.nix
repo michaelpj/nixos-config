@@ -70,6 +70,15 @@
           name = "Michael Peyton Jones";
           email = "me@michaelpj.com";
         };
+        ui = {
+          editor = "vim";
+          default-command = "status";
+        };
+        signing = {
+          sign-all = true;
+          backend = "gpg";
+          key = "86A43C24A728F66D";
+        };
       };
     };
     vim = {
