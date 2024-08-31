@@ -32,7 +32,7 @@
       "amdgpu.sg_display=0"
     ];
     # See if this helps stuff
-    kernelPackages = pkgs.linuxPackages_6_8;
+    kernelPackages = pkgs.linuxPackages_latest;
     # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"
@@ -49,6 +49,8 @@
 
   # zfs
   boot.supportedFilesystems = [ "zfs" ];
+  # revert this ASAP, don't want to be forced back to kernel 6.6 right now
+  boot.zfs.package = pkgs.zfs_unstable;
   services.zfs.autoScrub.enable = true;
 
   virtualisation.docker.enable = true;
