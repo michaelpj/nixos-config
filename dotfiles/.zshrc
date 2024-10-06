@@ -17,7 +17,35 @@ alias em='emacsclient -nw --alternate-editor=""'
 alias emw='emacsclient --alternate-editor=""'
 
 # fuzzy select pid
-alias pid="ps axww -o pid,user,%cpu,%mem,start,time,command | fzf --reverse --height=20% | sed 's/^ *//' | cut -f1 -d' '"
+function fzf_pid() {
+  zle -U $(ps axww -o user,pid,ppid,start,time,command | fzf --ansi --header-lines=1 --multi | awk '{print $2}')
+}
+zle -N fzf_pid
+bindkey "^Fp" fzf_pid
+
+## jj
+function fzf_jj_change() {
+  jj log --no-graph --no-pager --color always -T 'change_id.shortest() ++ "\t" ++ description.first_line() ++ "\n"'  \
+  | column --table --separator $'\t' --output-separator $'\t' --table-columns "Change ID,Description" \
+  | fzf --with-nth=2,3 -n 1,2 --delimiter $'\t' --ansi --header-lines=1 --multi --preview 'jj log --color always -r "ancestors({1})"' \
+  | cut -f1 -d$'\t' \
+  | sed -e 's/\ *//g'
+}
+function _fzf_jj_change() {
+  zle -U "$(fzf_jj_change)"
+}
+zle -N _fzf_jj_change
+bindkey "^Fj" _fzf_jj_change
+
+## git
+function fzf_git_branch() {
+  git branch-by-date | fzf --tac -n 2 --ansi --multi --preview 'git log --oneline --graph --date=short --color=always {2}' | cut -f2 -d' '
+}
+function _fzf_git_branch() {
+  zle -U $(fzf_git_branch)
+}
+zle -N _fzf_git_branch
+bindkey "^Fg" _fzf_git_branch
 
 # nix aliases
 alias ns='nix-shell'
@@ -27,12 +55,9 @@ NIXBUILD_BUILDERS="ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,bench
 ZWRK_BUILDERS="ssh://x86_64-linux-1.zw3rk.com x86_64-linux - 10 1 big-parallel,benchmark"
 alias nbr='nix build -f default.nix -L --builders "$REMOTE_BUILDERS"'
 
-alias vf="vim \$(ls | fzf --reverse --height=20%)"
-
 EDITOR=vim
 VISUAL=gvim
 
-# jj seems broken without -r?
 # -F quits if less than one screen, good for jj
 LESS="-g -i -M -S -w -z-4 -r -F -X"
 

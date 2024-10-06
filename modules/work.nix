@@ -8,8 +8,6 @@
 
     fd ripgrep 
 
-    fzf
-
     zoxide h
 
     graphviz
@@ -26,6 +24,7 @@
     iotop s-tui
     procs pstree
     parted gparted
+    pgcli
     lsof ncdu
     strace
     unetbootin
@@ -34,6 +33,7 @@
     gh tig
     gitAndTools.diff-so-fancy
     jujutsu
+    lazyjj
     # dev
     haskellPackages.ghc haskellPackages.haskell-language-server
     cabal-install haskellPackages.ghc-prof-flamegraph hlint stylish-haskell 
@@ -62,4 +62,5 @@
   programs.firefox = {
     enable = true;
   };
+
 }

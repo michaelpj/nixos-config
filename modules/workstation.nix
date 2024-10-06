@@ -13,4 +13,9 @@
     # want to remember keys on here
     ssh.startAgent = true;
   };
+
+  programs.fzf = {
+    fuzzyCompletion = true;
+    keybindings = true;
+  };
 }
