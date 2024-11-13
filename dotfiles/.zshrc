@@ -52,8 +52,7 @@ alias ns='nix-shell'
 alias nb='nix build -f default.nix -L'
 alias nixpkgs='nix-build --no-out-link "<nixpkgs>" -A'
 NIXBUILD_BUILDERS="ssh://eu.nixbuild.net x86_64-linux - 100 1 big-parallel,benchmark"
-ZWRK_BUILDERS="ssh://x86_64-linux-1.zw3rk.com x86_64-linux - 10 1 big-parallel,benchmark"
-alias nbr='nix build -f default.nix -L --builders "$REMOTE_BUILDERS"'
+CH_NIXBUILD_BUILDERS="ssh://nxb-ch-trial x86_64-linux - 200 1 big-parallel - -; ssh://nxb-ch-trial aarch64-linux - 200 1 big-parallel - -"
 
 EDITOR=vim
 VISUAL=gvim

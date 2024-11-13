@@ -45,7 +45,7 @@
     nix-prefetch-git cachix niv nix-diff nix-du #nixops
     # comms
     element-desktop slack zoom-us discord signal-desktop
-    skypeforlinux zulip
+    zulip
     # audio
     pavucontrol alsa-utils
     # desktop
@@ -54,7 +54,6 @@
     evince okular
     libreoffice
     gimp
-    #biscuit-cli
     logseq
     vault
   ];
