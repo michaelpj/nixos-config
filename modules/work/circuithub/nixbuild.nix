@@ -3,7 +3,7 @@
   programs.ssh = {
     knownHosts = {
       nxb-ch-trial = {
-        extraHostNames = [ "nxb-ch-trial" ];
+        extraHostNames = [ "ec2-44-209-63-204.compute-1.amazonaws.com" ];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHhhQI0rctOggRGf82iQzB9DTQk+4TkUPEIobuBiQlo";
       };
     };

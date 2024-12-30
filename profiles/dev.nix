@@ -17,6 +17,8 @@
 
       ../modules/work/circuithub.nix
 
+      ../modules/1password.nix
+      ../modules/bitwarden.nix
       ../modules/cachix.nix
       ../modules/nixbuild.nix
       ../modules/zwrk.nix
