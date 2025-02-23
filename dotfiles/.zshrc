@@ -60,5 +60,12 @@ VISUAL=gvim
 # -F quits if less than one screen, good for jj
 LESS="-g -i -M -S -w -z-4 -r -F -X"
 
+unlock_bw () {
+  if [[ -z $BW_SESSION ]] ; then
+    >&2 echo 'bw locked - unlocking into a new session'
+    export BW_SESSION="$(bw unlock --raw)"
+  fi
+}
+
 eval "$(zoxide init zsh)"
 eval "$(h --setup ~/code)"

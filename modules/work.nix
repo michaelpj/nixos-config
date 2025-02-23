@@ -33,7 +33,8 @@
     gh tig
     gitAndTools.diff-so-fancy
     jujutsu
-    lazyjj
+    # https://github.com/NixOS/nixpkgs/issues/370890
+    #lazyjj
     # dev
     haskellPackages.ghc haskellPackages.haskell-language-server
     cabal-install haskellPackages.ghc-prof-flamegraph hlint stylish-haskell 

@@ -73,6 +73,8 @@
         ui = {
           editor = "vim";
           default-command = "status";
+          pager = "delta";
+          diff.format = "git";
         };
         signing = {
           sign-all = true;
@@ -133,4 +135,15 @@
       pinentryPackage = pkgs.pinentry-qt;
     };
   };
+
+  xdg.configFile."direnv/lib/oprc.sh" = 
+    let direnv-op = pkgs.fetchFromGitHub {
+      owner = "venkytv";
+      repo = "direnv-op";
+      rev = "db976ce107a2f58fb7465a7d2f0858a37b32e1f1";
+      sha256 = "sha256-2lejN0oDbssTO1Cz6zneiYIA9Gbj4r2KE1bfmzfF3F4=";
+    };
+    in {
+      source = "${direnv-op}/oprc.sh";
+    };
 }
