@@ -67,5 +67,10 @@ unlock_bw () {
   fi
 }
 
+lock_bw () {
+  unset BW_SESSION
+  bw lock
+}
+
 eval "$(zoxide init zsh)"
 eval "$(h --setup ~/code)"

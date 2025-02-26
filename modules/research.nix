@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    zotero 
+    zotero
     # insecure?
     # xpdf
   ];

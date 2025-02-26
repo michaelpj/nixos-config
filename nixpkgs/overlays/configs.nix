@@ -7,7 +7,7 @@ in
   factorio = super.factorio.override {
     username = factorio-secrets.username;
     password = factorio-secrets.password;
-    mods = (super.callPackage ../pkgs/factorio-mods.nix {}).collection;
+    mods = (super.callPackage ../pkgs/factorio-mods.nix { }).collection;
   };
 
 }

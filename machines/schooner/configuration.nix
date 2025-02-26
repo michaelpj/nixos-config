@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.framework-13-7040-amd
 
@@ -26,9 +27,9 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    kernelParams = [ 
+    kernelParams = [
       # I don't really care about these issues on my laptop
-      "mitigations=off" 
+      "mitigations=off"
       "amdgpu.sg_display=0"
     ];
     # new LTS
@@ -54,12 +55,12 @@
   virtualisation.docker.enable = true;
 
   networking = {
-    hostName = "schooner"; 
+    hostName = "schooner";
     hostId = "635f8603";
     # oops, messed up here
     #hostId = "0aaddb32";
   };
-  
+
   system.stateVersion = "23.05";
 
 }

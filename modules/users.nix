@@ -8,17 +8,18 @@
   };
 
   security.sudo.enable = true;
-  security.sudo.wheelNeedsPassword = false; 
+  security.sudo.wheelNeedsPassword = false;
 
   users.users.michael = {
     description = "Michael Peyton Jones";
     isNormalUser = true;
-    extraGroups = [ 
-      "wheel" 
-      "audio" "video"
+    extraGroups = [
+      "wheel"
+      "audio"
+      "video"
       "systemd-journal"
-      "networkmanager" 
-      "vboxusers" 
+      "networkmanager"
+      "vboxusers"
       "libvirtd"
       "docker"
     ];

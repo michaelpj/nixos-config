@@ -2,25 +2,25 @@
 {
 
   imports = [
-      ../modules/nix.nix
-      ../modules/nixpkgs.nix
-      ../modules/networking.nix
-      ../modules/basics.nix
-      ../modules/locales.nix
-      ../modules/workstation.nix
-      ../modules/graphical.nix
-      ../modules/sound.nix
-      ../modules/users.nix
-      ../modules/security.nix
+    ../modules/nix.nix
+    ../modules/nixpkgs.nix
+    ../modules/networking.nix
+    ../modules/basics.nix
+    ../modules/locales.nix
+    ../modules/workstation.nix
+    ../modules/graphical.nix
+    ../modules/sound.nix
+    ../modules/users.nix
+    ../modules/security.nix
 
-      ../modules/work/iohk.nix
+    ../modules/work/iohk.nix
 
-      ../modules/work/circuithub.nix
+    ../modules/work/circuithub.nix
 
-      ../modules/1password.nix
-      ../modules/bitwarden.nix
-      ../modules/cachix.nix
-      ../modules/nixbuild.nix
-      ../modules/zwrk.nix
+    ../modules/1password.nix
+    ../modules/bitwarden.nix
+    ../modules/cachix.nix
+    ../modules/nixbuild.nix
+    ../modules/zwrk.nix
   ];
 }

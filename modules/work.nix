@@ -2,13 +2,22 @@
 {
   home.packages = with pkgs; [
     # build-essentials
-    binutils gcc gnumake pkg-config ruby
+    binutils
+    gcc
+    gnumake
+    pkg-config
+    ruby
     # utilities
-    wget zip unzip rsync  
+    wget
+    zip
+    unzip
+    rsync
 
-    fd ripgrep 
+    fd
+    ripgrep
 
-    zoxide h
+    zoxide
+    h
 
     graphviz
     jq
@@ -19,44 +28,66 @@
     vscode
     editorconfig-core-c
     pandoc
-    aspell 
+    aspell
     # system
-    iotop s-tui
-    procs pstree
-    parted gparted
+    iotop
+    s-tui
+    procs
+    pstree
+    parted
+    gparted
     pgcli
-    lsof ncdu
+    lsof
+    ncdu
     strace
     unetbootin
-    usbutils pciutils
+    usbutils
+    pciutils
     # vc
-    gh tig
+    gh
+    tig
     gitAndTools.diff-so-fancy
     jujutsu
     # https://github.com/NixOS/nixpkgs/issues/370890
     #lazyjj
     # dev
-    haskellPackages.ghc haskellPackages.haskell-language-server
-    cabal-install haskellPackages.ghc-prof-flamegraph hlint stylish-haskell 
+    haskellPackages.ghc
+    haskellPackages.haskell-language-server
+    cabal-install
+    haskellPackages.ghc-prof-flamegraph
+    hlint
+    stylish-haskell
     python3
     flamegraph
     qemu
     go-jira
     # nix
-    nix-prefetch-git cachix niv nix-diff nix-du #nixops
+    nix-prefetch-git
+    cachix
+    niv
+    nix-diff
+    nix-du #nixops
     # comms
-    element-desktop slack zoom-us discord signal-desktop
+    element-desktop
+    slack
+    zoom-us
+    discord
+    signal-desktop
     zulip
     # audio
-    pavucontrol alsa-utils
+    pavucontrol
+    alsa-utils
     # desktop
     google-chrome
-    yakuake konsole
-    evince okular
+    yakuake
+    konsole
+    evince
+    okular
     libreoffice
     gimp
     logseq
     vault
+    aider-chat
   ];
 
   programs.firefox = {

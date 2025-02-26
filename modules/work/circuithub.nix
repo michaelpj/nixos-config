@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ 
+  imports = [
     ./circuithub/binary-cache.nix
     ./circuithub/tailscale.nix
     ./circuithub/rabbitmq.nix

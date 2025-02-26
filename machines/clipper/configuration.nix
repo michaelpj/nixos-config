@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
@@ -42,12 +43,12 @@
   services.zfs.autoScrub.enable = true;
 
   networking = {
-    hostName = "clipper"; 
+    hostName = "clipper";
     hostId = "635f8603";
   };
 
   virtualisation.docker.enable = true;
-  
+
   system.stateVersion = "20.03";
 
   # TODO: move to nixos-hardware

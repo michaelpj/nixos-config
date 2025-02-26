@@ -2,7 +2,10 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim_configurable git tmux htop 
+    vim_configurable
+    git
+    tmux
+    htop
   ];
 
   services = {

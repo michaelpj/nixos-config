@@ -2,11 +2,11 @@
 
 {
   networking = {
-    networkmanager = { 
+    networkmanager = {
       enable = true;
       # I am confused about whether I need this as well as
       # networking.nameservers
-      appendNameservers = [ "8.8.8.8" ]; 
+      appendNameservers = [ "8.8.8.8" ];
     };
     firewall.enable = false;
     nameservers = [ "8.8.8.8" ];

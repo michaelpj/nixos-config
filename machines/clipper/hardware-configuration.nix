@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" ];
@@ -14,33 +15,37 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "tank/root";
+    {
+      device = "tank/root";
       fsType = "zfs";
     };
 
   fileSystems."/nix" =
-    { device = "tank/nix";
+    {
+      device = "tank/nix";
       fsType = "zfs";
     };
 
   fileSystems."/tank" =
-    { device = "tank";
+    {
+      device = "tank";
       fsType = "zfs";
     };
 
   fileSystems."/home" =
-    { device = "tank/home";
+    {
+      device = "tank/home";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7A75-2B67";
+    {
+      device = "/dev/disk/by-uuid/7A75-2B67";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/b56db3f9-88fa-4f40-b606-609e9c95ffaa"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/b56db3f9-88fa-4f40-b606-609e9c95ffaa"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   #hardware.video.hidpi.enable = lib.mkDefault true;

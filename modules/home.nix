@@ -1,19 +1,19 @@
 { pkgs, ... }:
 
 {
-  imports = [ 
-    ./entertainment.nix 
-    ./research.nix 
-    ./work.nix 
+  imports = [
+    ./entertainment.nix
+    ./research.nix
+    ./work.nix
   ];
 
   fonts.fontconfig.enable = true;
 
   xdg.enable = true;
 
-  home = { 
-    packages = with pkgs; [ 
-      gnupg 
+  home = {
+    packages = with pkgs; [
+      gnupg
 
       # dictionaries
       aspell
@@ -24,11 +24,11 @@
   };
 
   #nix = {
-    #package = pkgs.nixUnstable;
-    #settings = {
-      #experimental-features = "nix-command flakes";
-      #allow-import-from-derivation = true;
-    #};
+  #package = pkgs.nixUnstable;
+  #settings = {
+  #experimental-features = "nix-command flakes";
+  #allow-import-from-derivation = true;
+  #};
   #};
 
   programs = {
@@ -136,14 +136,16 @@
     };
   };
 
-  xdg.configFile."direnv/lib/oprc.sh" = 
-    let direnv-op = pkgs.fetchFromGitHub {
-      owner = "venkytv";
-      repo = "direnv-op";
-      rev = "db976ce107a2f58fb7465a7d2f0858a37b32e1f1";
-      sha256 = "sha256-2lejN0oDbssTO1Cz6zneiYIA9Gbj4r2KE1bfmzfF3F4=";
-    };
-    in {
+  xdg.configFile."direnv/lib/oprc.sh" =
+    let
+      direnv-op = pkgs.fetchFromGitHub {
+        owner = "venkytv";
+        repo = "direnv-op";
+        rev = "db976ce107a2f58fb7465a7d2f0858a37b32e1f1";
+        sha256 = "sha256-2lejN0oDbssTO1Cz6zneiYIA9Gbj4r2KE1bfmzfF3F4=";
+      };
+    in
+    {
       source = "${direnv-op}/oprc.sh";
     };
 }

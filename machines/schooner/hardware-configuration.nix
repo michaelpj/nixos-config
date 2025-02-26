@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
@@ -14,47 +15,54 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "zroot/local/root";
+    {
+      device = "zroot/local/root";
       fsType = "zfs";
       neededForBoot = true;
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3A86-3082";
+    {
+      device = "/dev/disk/by-uuid/3A86-3082";
       fsType = "vfat";
       neededForBoot = true;
     };
 
   fileSystems."/home/michael" =
-    { device = "zroot/persist/user/michael";
+    {
+      device = "zroot/persist/user/michael";
       fsType = "zfs";
     };
 
   fileSystems."/nix" =
-    { device = "zroot/local/nix";
+    {
+      device = "zroot/local/nix";
       fsType = "zfs";
       neededForBoot = true;
     };
 
   fileSystems."/persist" =
-    { device = "zroot/persist/system";
+    {
+      device = "zroot/persist/system";
       fsType = "zfs";
       neededForBoot = true;
     };
 
   fileSystems."/var/lib" =
-    { device = "zroot/persist/lib";
+    {
+      device = "zroot/persist/lib";
       fsType = "zfs";
     };
 
   fileSystems."/var/log/journal" =
-    { device = "zroot/persist/journal";
+    {
+      device = "zroot/persist/journal";
       fsType = "zfs";
       neededForBoot = true;
     };
 
-  swapDevices = [ 
-   { device = "/dev/disk/by-label/swap"; }
+  swapDevices = [
+    { device = "/dev/disk/by-label/swap"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -1,6 +1,6 @@
 { domain, enableSsl, ... }:
 { config, pkgs, ... }:
-let 
+let
   www = "www.${domain}";
   enableACME = enableSsl;
   forceSSL = enableSsl;
@@ -32,7 +32,7 @@ in
       default = true;
       inherit enableACME forceSSL;
 
-      locations."/blog/".alias = (pkgs.callPackage ../blog/default.nix {}).blog + "/";
+      locations."/blog/".alias = (pkgs.callPackage ../blog/default.nix { }).blog + "/";
       locations."/".root = ../landing;
     };
 
@@ -40,5 +40,5 @@ in
     appendHttpConfig = "server_names_hash_bucket_size 64;";
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 ] ++ (if enableSsl then [ 443 ] else []);
+  networking.firewall.allowedTCPPorts = [ 80 ] ++ (if enableSsl then [ 443 ] else [ ]);
 }

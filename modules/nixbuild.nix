@@ -9,9 +9,9 @@
     };
     # SSH version
     #extraConfig = ''
-      #Host eu.nixbuild.net
-          #PubkeyAcceptedKeyTypes ssh-ed25519
-          #IdentityFile /root/.ssh/nixbuild
+    #Host eu.nixbuild.net
+    #PubkeyAcceptedKeyTypes ssh-ed25519
+    #IdentityFile /root/.ssh/nixbuild
     #'';
     extraConfig = '' 
       Host eu.nixbuild.net

@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ 
+  imports = [
     ./iohk/binary-cache.nix
   ];
 }

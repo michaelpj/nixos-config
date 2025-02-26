@@ -5,7 +5,7 @@
     steam
     steam-run
     #lutris
-    spotify 
+    spotify
     vlc
   ];
 }
