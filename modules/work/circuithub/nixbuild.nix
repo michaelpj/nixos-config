@@ -1,20 +1,19 @@
 { config, pkgs, lib, ... }:
 {
   programs.ssh = {
-    knownHosts = {
-      nxb-ch-trial = {
-        extraHostNames = [ "ec2-44-209-63-204.compute-1.amazonaws.com" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHhhQI0rctOggRGf82iQzB9DTQk+4TkUPEIobuBiQlo";
-      };
-    };
     extraConfig = ''
-      Host nxb-ch-trial
-        Hostname ec2-44-209-63-204.compute-1.amazonaws.com
+      Host ch-nixbuild
+        Hostname 18.210.169.118
         Port 2222
         PubkeyAcceptedKeyTypes ssh-ed25519
         ServerAliveInterval 60
         IPQoS throughput
-        IdentityFile /root/.ssh/circuithub-nixbuild-ssh
     '';
+    knownHosts = {
+      "ch-nixbuild" = {
+        extraHostNames = [ "18.210.169.118" ];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGrwGIHzDfEpg8ja2U6d+TdCxENwo4aZQqjaw+KyFQqB";
+      };
+    };
   };
 }
