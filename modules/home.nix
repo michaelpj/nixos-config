@@ -59,8 +59,9 @@
     gh = {
       enable = true;
       settings = {
-        # Workaround for https://github.com/nix-community/home-manager/issues/4744
-        version = 1;
+        aliases = {
+					jjpc = "gh pr create --head $(jj bookmark list -r @ -T name) --base $(jj bookmark list -r 'heads(::@- & bookmarks())' -T name) --fill \$@";
+        };
       };
     };
     jujutsu = {
@@ -77,7 +78,7 @@
           diff.format = "git";
         };
         signing = {
-          sign-all = true;
+          behaviour = "own";
           backend = "gpg";
           key = "86A43C24A728F66D";
         };

@@ -73,21 +73,20 @@
     zoom-us
     discord
     signal-desktop
-    zulip
     # audio
     pavucontrol
     alsa-utils
     # desktop
     google-chrome
-    yakuake
-    konsole
+    kdePackages.yakuake
+    kdePackages.konsole
     evince
-    okular
+    kdePackages.okular
     libreoffice
     gimp
-    logseq
     vault
     aider-chat
+    code-cursor
   ];
 
   programs.firefox = {
