@@ -87,6 +87,7 @@
     vault
     aider-chat
     code-cursor
+    remmina
   ];
 
   programs.firefox = {
