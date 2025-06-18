@@ -51,6 +51,7 @@
     # https://github.com/NixOS/nixpkgs/issues/370890
     #lazyjj
     # dev
+    mergiraf
     haskellPackages.ghc
     haskellPackages.haskell-language-server
     cabal-install

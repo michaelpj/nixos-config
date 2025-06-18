@@ -122,7 +122,7 @@
         ];
         editor.keymap = "vi";
       };
-      initExtra = builtins.readFile ../dotfiles/.zshrc + builtins.readFile ../dotfiles/.p10k.zsh;
+      initContent = builtins.readFile ../dotfiles/.zshrc + builtins.readFile ../dotfiles/.p10k.zsh;
     };
   };
 
@@ -133,7 +133,7 @@
       maxCacheTtl = 86400;
       # six hours
       defaultCacheTtl = 21600;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-qt;
     };
   };
 

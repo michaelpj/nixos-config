@@ -22,6 +22,8 @@
       "vboxusers"
       "libvirtd"
       "docker"
+      # for serial ports
+      "dialout"
     ];
     shell = pkgs.zsh;
     uid = 1000;
