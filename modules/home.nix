@@ -75,7 +75,7 @@
           editor = "vim";
           default-command = "status";
           pager = "delta";
-          diff.format = "git";
+          diff-formatter = ":git";
         };
         signing = {
           behaviour = "own";
