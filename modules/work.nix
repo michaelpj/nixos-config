@@ -87,6 +87,7 @@
     gimp
     vault
     aider-chat
+    claude-code
     code-cursor
     remmina
   ];

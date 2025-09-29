@@ -19,4 +19,7 @@
     publish.enable = true;
     ipv6 = true;
   };
+  services.mullvad-vpn = {
+    enable = true;
+  };
 }

@@ -82,6 +82,7 @@
           backend = "gpg";
           key = "86A43C24A728F66D";
         };
+        templates.commit_trailers = ''if(!trailers.contains_key("Change-Id"), format_gerrit_change_id_trailer(self))'';
       };
     };
     vim = {
@@ -124,6 +125,7 @@
       };
       initContent = builtins.readFile ../dotfiles/.zshrc + builtins.readFile ../dotfiles/.p10k.zsh;
     };
+    mullvad-vpn.enable = true;
   };
 
   services = {
