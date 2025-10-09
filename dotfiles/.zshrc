@@ -73,4 +73,3 @@ lock_bw () {
 }
 
 eval "$(zoxide init zsh)"
-eval "$(h --setup ~/code)"

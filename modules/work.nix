@@ -17,7 +17,6 @@
     ripgrep
 
     zoxide
-    h
 
     graphviz
     jq
