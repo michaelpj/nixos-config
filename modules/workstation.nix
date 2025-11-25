@@ -31,4 +31,9 @@
     fuzzyCompletion = true;
     keybindings = true;
   };
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }
