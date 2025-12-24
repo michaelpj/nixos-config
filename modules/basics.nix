@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim_configurable
+    vim-full
     git
     tmux
     htop

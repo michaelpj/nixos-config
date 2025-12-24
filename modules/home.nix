@@ -46,7 +46,7 @@
     };
     git = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
+      package = pkgs.gitFull;
       includes = [
         { path = ../dotfiles/gitconfig; }
         { condition = "gitdir:iohk/"; path = ../dotfiles/gitconfig-iohk; }
@@ -60,7 +60,7 @@
       enable = true;
       settings = {
         aliases = {
-					jjpc = "gh pr create --head $(jj bookmark list -r @ -T name) --base $(jj bookmark list -r 'heads(::@- & bookmarks())' -T name) --fill \$@";
+					jjpc = ''!gh pr create --head "$(jj bookmark list -r "$1" -T name)" --base "$(jj bookmark list -r "pr_base_of($1)" -T name)" --fill "''${@:2}"'';
         };
       };
     };
@@ -82,7 +82,40 @@
           backend = "gpg";
           key = "86A43C24A728F66D";
         };
-        templates.commit_trailers = ''if(!trailers.contains_key("Change-Id"), format_gerrit_change_id_trailer(self))'';
+        templates = { 
+          commit_trailers = ''if(!trailers.contains_key("Change-Id"), format_gerrit_change_id_trailer(self))'';
+          git_push_bookmark = ''"mpj/jj/" ++ change_id.short()'';
+        };
+        revset-aliases = {
+          "open_bookmarks()" = "bookmarks() & ~::immutable()";
+          "pr_base_of(to)" = "coalesce(heads(::to- & open_bookmarks()), trunk())";
+        };
+        aliases = {
+          gh-pr = [
+            "util" "exec" "--"
+            "sh" "-eu" "-c"
+            ''
+              to="$1"; shift
+
+              bm_name () {
+                jj bookmark list -r "$1" -T name |
+                  awk '!/@/ {print}' |
+                  {
+                    read -r first || { echo "no local bookmark for revset: $1" >&2; exit 1; }
+                    read -r second && { echo "multiple local bookmarks for revset: $1" >&2; exit 1; }
+                    printf "%s\n" "$first"
+                  }
+              }
+
+              head="$(bm_name "$to")"
+              base="$(bm_name "pr_base_of($to)")"
+
+              jj git push --allow-new -b "$head"
+              gh pr create --head "$head" --base "$base" --fill "$@"
+            ''
+            "sh" "$@"
+          ];
+        };
       };
     };
     vim = {
