@@ -72,7 +72,7 @@
         vps = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (./machines/vultr/configuration.nix)
+            (import ./machines/vultr/configuration.nix)
             (import ./profiles/vps.nix { })
             {
               _module.args.nixinate = {

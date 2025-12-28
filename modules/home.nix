@@ -98,13 +98,9 @@
               to="$1"; shift
 
               bm_name () {
-                jj bookmark list -r "$1" -T name |
-                  awk '!/@/ {print}' |
-                  {
-                    read -r first || { echo "no local bookmark for revset: $1" >&2; exit 1; }
-                    read -r second && { echo "multiple local bookmarks for revset: $1" >&2; exit 1; }
-                    printf "%s\n" "$first"
-                  }
+                jj log --no-graph -r "exactly($1, 1)" \
+                  -T 'if(local_bookmarks.len() == 1, local_bookmarks ++ "\n")' |
+                  { read -r name || { echo "no single local bookmark for: $1" >&2; exit 1; }; echo "$name"; }
               }
 
               head="$(bm_name "$to")"

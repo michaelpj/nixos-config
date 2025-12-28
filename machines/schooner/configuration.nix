@@ -56,9 +56,7 @@
 
   networking = {
     hostName = "schooner";
-    hostId = "635f8603";
-    # oops, messed up here
-    #hostId = "0aaddb32";
+    hostId = "0aaddb32";
   };
 
   system.stateVersion = "23.05";
