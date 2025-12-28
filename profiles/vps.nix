@@ -1,16 +1,13 @@
 { domain ? "michaelpj.com", enableSsl ? true, ... }:
 let
-  # using an @ binding doesn't seem to work with optional args
   args = { inherit domain enableSsl; };
 in
 { config, pkgs, ... }:
 {
   imports = [
+    ./base.nix
     (import ../modules/www.nix args)
     (import ../modules/hostedFiles.nix args)
-    (../modules/basics.nix)
-    (../modules/locales.nix)
-    (../modules/users.nix)
   ];
 
   networking.domain = domain;

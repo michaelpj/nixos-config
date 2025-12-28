@@ -1,21 +1,16 @@
-{ config, pkgs, nixos-hardware, home-manager, lib, ... }:
+{ config, pkgs, home-manager, ... }:
 {
-
   imports = [
-    ../modules/nix.nix
-    ../modules/nixpkgs.nix
+    ./base.nix
+
+    home-manager.nixosModules.home-manager
+    ../modules/home-manager.nix
+
     ../modules/networking.nix
-    ../modules/basics.nix
-    ../modules/locales.nix
     ../modules/workstation.nix
     ../modules/graphical.nix
     ../modules/sound.nix
-    ../modules/users.nix
     ../modules/security.nix
-
-    ../modules/work/iohk.nix
-
-    ../modules/work/circuithub.nix
 
     ../modules/1password.nix
     ../modules/bitwarden.nix

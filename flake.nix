@@ -52,8 +52,10 @@
         clipper = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./machines/clipper/configuration.nix)
-            (import ./profiles/dev.nix)
+            ./machines/clipper/configuration.nix
+            ./profiles/laptop.nix
+            ./modules/work/iohk.nix
+            ./modules/work/circuithub.nix
             revModule
             localNixpkgsModule
           ];
@@ -62,8 +64,10 @@
         schooner = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./machines/schooner/configuration.nix)
-            (import ./profiles/dev.nix)
+            ./machines/schooner/configuration.nix
+            ./profiles/laptop.nix
+            ./modules/work/iohk.nix
+            ./modules/work/circuithub.nix
             revModule
             localNixpkgsModule
           ];
@@ -72,11 +76,11 @@
         vps = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./machines/vultr/configuration.nix)
+            ./machines/vultr/configuration.nix
             (import ./profiles/vps.nix { })
             {
               _module.args.nixinate = {
-                host = "michaelpj.com"; # "45.63.99.65";
+                host = "michaelpj.com";
                 sshUser = "michael";
               };
             }
