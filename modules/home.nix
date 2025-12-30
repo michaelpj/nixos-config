@@ -131,25 +131,10 @@
     };
     zsh = {
       enable = true;
-      prezto = {
-        enable = true;
-        # https://github.com/nix-community/home-manager/issues/2255
-        caseSensitive = true;
-        pmodules = [
-          "environment"
-          "terminal"
-          "editor"
-          "history"
-          "directory"
-          "spectrum"
-          "utility"
-          "git"
-          "completion"
-          "syntax-highlighting"
-          "history-substring-search"
-        ];
-        editor.keymap = "vi";
-      };
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+      historySubstringSearch.enable = true;
+      defaultKeymap = "viins";
       initContent = builtins.readFile ../dotfiles/.zshrc;
     };
     mullvad-vpn.enable = true;

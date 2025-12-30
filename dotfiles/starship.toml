@@ -1,10 +1,10 @@
-# Starship prompt configuration
-# Mimics the lean powerlevel10k style
-
+# Starship prompt - lean style
 format = """
 $directory\
-$git_branch\
-$git_status\
+$haskell\
+${custom.git_branch}\
+${custom.git_status}\
+${custom.jj}\
 $character"""
 
 right_format = """
@@ -15,66 +15,50 @@ $direnv\
 $username\
 $hostname"""
 
-# Don't add newline before prompt
 add_newline = false
 
-[directory]
-style = "bold blue"
-truncation_length = 5
-truncate_to_repo = false
-
+# Wrap git modules to only show outside jj repos
 [git_branch]
-style = "green"
-format = "[$branch]($style)"
+disabled = true
+
+[custom.git_branch]
+when = "! jj --ignore-working-copy root 2>/dev/null"
+command = "starship module git_branch"
+style = ""
+format = "$output"
 
 [git_status]
-style = "bold"
-format = '([ $all_status$ahead_behind]($style))'
-ahead = "[⇡${count}](green)"
-behind = "[⇣${count}](green)"
-conflicted = "[~${count}](red)"
-staged = "[+${count}](yellow)"
-modified = "[!${count}](yellow)"
-untracked = "[?${count}](blue)"
-stashed = "[*${count}](green)"
+disabled = true
 
-[character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold green)"
-vimcmd_replace_one_symbol = "[❮](bold purple)"
-vimcmd_replace_symbol = "[❮](bold purple)"
-vimcmd_visual_symbol = "[Ⅴ](bold green)"
+[custom.git_status]
+when = "! jj --ignore-working-copy root 2>/dev/null"
+command = "starship module git_status"
+style = ""
+format = "$output"
+
+# jj status - similar format to git
+[custom.jj]
+command = '''
+jj log -r @ -n1 --ignore-working-copy --no-graph --color always -T '
+  concat(
+    change_id.shortest(4),
+    if(conflict, concat(raw_escape_sequence("\x1b[31m"), "~", raw_escape_sequence("\x1b[0m"))),
+    if(divergent, concat(raw_escape_sequence("\x1b[33m"), "⑂", raw_escape_sequence("\x1b[0m"))),
+    if(hidden, concat(raw_escape_sequence("\x1b[90m"), "∅", raw_escape_sequence("\x1b[0m"))),
+  )
+'
+'''
+when = "jj --ignore-working-copy root 2>/dev/null"
+format = "$output"
 
 [status]
 disabled = false
-format = "[$symbol$status]($style) "
-symbol = "✘ "
-success_symbol = ""
-style = "red"
-
-[cmd_duration]
-min_time = 3000
-style = "fg:101"
-format = "[$duration]($style) "
-
-[jobs]
-style = "green"
-symbol = "≡"
-format = "[$symbol]($style) "
 
 [direnv]
 disabled = false
-style = "yellow"
-format = "[$symbol$allowed]($style) "
-symbol = "direnv "
-
-[username]
-show_always = false
-style_user = "fg:180"
-format = "[$user]($style)"
 
 [hostname]
-ssh_only = true
-style = "fg:180"
 format = "[@$hostname]($style) "
+
+[haskell]
+format = '\[[$symbol($version)]($style)\] '

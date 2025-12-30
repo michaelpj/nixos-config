@@ -1,10 +1,5 @@
 autoload -U colors && colors
 
-# Makes completion slow, see https://github.com/sorin-ionescu/prezto/issues/1876
-unsetopt PATH_DIRS
-
-set -o vi
-
 setopt CLOBBER
 
 # Report time for commands longer than 20s
@@ -12,6 +7,7 @@ REPORTTIME=20
 
 # Aliases
 
+alias g='git'
 alias tmux='tmux -2'
 alias em='emacsclient -nw --alternate-editor=""'
 alias emw='emacsclient --alternate-editor=""'

@@ -6,6 +6,7 @@
     git
     tmux
     htop
+    libnotify
   ];
 
   services = {
