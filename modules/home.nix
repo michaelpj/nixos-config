@@ -135,7 +135,6 @@
         enable = true;
         # https://github.com/nix-community/home-manager/issues/2255
         caseSensitive = true;
-        prompt.theme = "powerlevel10k";
         pmodules = [
           "environment"
           "terminal"
@@ -148,13 +147,16 @@
           "completion"
           "syntax-highlighting"
           "history-substring-search"
-          "prompt"
         ];
         editor.keymap = "vi";
       };
-      initContent = builtins.readFile ../dotfiles/.zshrc + builtins.readFile ../dotfiles/.p10k.zsh;
+      initContent = builtins.readFile ../dotfiles/.zshrc;
     };
     mullvad-vpn.enable = true;
+    starship = {
+      enable = true;
+      settings = builtins.fromTOML (builtins.readFile ../dotfiles/starship.toml);
+    };
   };
 
   services = {

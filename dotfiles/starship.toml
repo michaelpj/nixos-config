@@ -1,0 +1,80 @@
+# Starship prompt configuration
+# Mimics the lean powerlevel10k style
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character"""
+
+right_format = """
+$status\
+$cmd_duration\
+$jobs\
+$direnv\
+$username\
+$hostname"""
+
+# Don't add newline before prompt
+add_newline = false
+
+[directory]
+style = "bold blue"
+truncation_length = 5
+truncate_to_repo = false
+
+[git_branch]
+style = "green"
+format = "[$branch]($style)"
+
+[git_status]
+style = "bold"
+format = '([ $all_status$ahead_behind]($style))'
+ahead = "[⇡${count}](green)"
+behind = "[⇣${count}](green)"
+conflicted = "[~${count}](red)"
+staged = "[+${count}](yellow)"
+modified = "[!${count}](yellow)"
+untracked = "[?${count}](blue)"
+stashed = "[*${count}](green)"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+vimcmd_replace_one_symbol = "[❮](bold purple)"
+vimcmd_replace_symbol = "[❮](bold purple)"
+vimcmd_visual_symbol = "[Ⅴ](bold green)"
+
+[status]
+disabled = false
+format = "[$symbol$status]($style) "
+symbol = "✘ "
+success_symbol = ""
+style = "red"
+
+[cmd_duration]
+min_time = 3000
+style = "fg:101"
+format = "[$duration]($style) "
+
+[jobs]
+style = "green"
+symbol = "≡"
+format = "[$symbol]($style) "
+
+[direnv]
+disabled = false
+style = "yellow"
+format = "[$symbol$allowed]($style) "
+symbol = "direnv "
+
+[username]
+show_always = false
+style_user = "fg:180"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = true
+style = "fg:180"
+format = "[@$hostname]($style) "
