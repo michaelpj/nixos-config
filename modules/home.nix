@@ -100,16 +100,17 @@
               bm_name () {
                 jj log --no-graph -r "exactly($1, 1)" \
                   -T 'if(local_bookmarks.len() == 1, local_bookmarks ++ "\n")' |
-                  { read -r name || { echo "no single local bookmark for: $1" >&2; exit 1; }; echo "$name"; }
+                  { read -r name || { echo "no single local bookmark for: $1" >&2; exit 1; }; echo "''${name%\*}"; }
               }
 
               head="$(bm_name "$to")"
               base="$(bm_name "pr_base_of($to)")"
 
-              jj git push --allow-new -b "$head"
+              jj git push -b "$head"
+              jj git export
               gh pr create --head "$head" --base "$base" --fill "$@"
             ''
-            "sh" "$@"
+            "sh"
           ];
         };
       };

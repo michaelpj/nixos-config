@@ -12,6 +12,7 @@
     };
     nixinate = {
       url = "github:matthewcroughan/nixinate";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
