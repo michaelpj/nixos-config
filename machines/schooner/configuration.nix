@@ -25,8 +25,6 @@
       "mitigations=off"
       "amdgpu.sg_display=0"
     ];
-    # new LTS
-    kernelPackages = pkgs.linuxPackages_6_12;
     # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"

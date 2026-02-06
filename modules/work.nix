@@ -47,8 +47,7 @@
     tig
     diff-so-fancy
     jujutsu
-    # https://github.com/NixOS/nixpkgs/issues/370890
-    #lazyjj
+    lazyjj
     # dev
     mergiraf
     haskellPackages.ghc
