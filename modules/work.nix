@@ -87,6 +87,7 @@
     aider-chat
     claude-code
     remmina
+    donethat
   ];
 
   programs.firefox = {
