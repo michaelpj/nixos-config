@@ -2,10 +2,10 @@ self: super:
 
 let
   pname = "donethat";
-  version = "1.4.8";
+  version = "1.5.0";
   src = super.fetchurl {
     url = "https://github.com/donethatai/donethat-releases/releases/download/v${version}/DoneThat-x86_64.AppImage";
-    hash = "sha256-J2xa4MQoMli9+INZBG7Se/mZN44xU+N3+D6bLrd0Znk=";
+    hash = "sha256-ih5BrOi7Y0vfIYH412LvwNbVpTzxq7w02m+kHO7rTjM=";
   };
 in
 {
