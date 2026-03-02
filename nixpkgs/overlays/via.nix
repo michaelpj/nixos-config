@@ -33,8 +33,8 @@ in
     src = super.fetchFromGitHub {
       owner = "michaelpj";
       repo = "via";
-      rev = "48f8ef8d1e8839286b995e222121c760a0324aae";
-      hash = "sha256-2YfTx/ZIW+KW5crhWchV8hebxGKBNa8cAiay4m3JLYk=";
+      rev = "594dc91c1557143a8af900d8c5bec9f8165706db";
+      hash = "sha256-lWr/XAsBiJ4MtVqWTaqd4rOadMBQZheqwUpL1275KnQ=";
     };
 
     cargoHash = "sha256-W9RY2wFCNqsDi+FaPXlYQqNcpAwrXGu/IzsoI/w+/ro=";
