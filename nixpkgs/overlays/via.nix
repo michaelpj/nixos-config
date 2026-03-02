@@ -31,13 +31,13 @@ in
     version = "0.2.0";
 
     src = super.fetchFromGitHub {
-      owner = "rehno-lindeque";
+      owner = "michaelpj";
       repo = "via";
-      rev = "4dd97b42b83be3c881a4f96c94dbf913f639891b";
-      hash = "sha256-aBO/nspVZ/cFAFbZ6hbescrVvI6pg6ANxvOUle/0GsQ=";
+      rev = "48f8ef8d1e8839286b995e222121c760a0324aae";
+      hash = "sha256-2YfTx/ZIW+KW5crhWchV8hebxGKBNa8cAiay4m3JLYk=";
     };
 
-    cargoHash = "sha256-30rcH/2xSjtsqYe6vFj2gEdmTskFj3TwDdo8tq1UAU8=";
+    cargoHash = "sha256-W9RY2wFCNqsDi+FaPXlYQqNcpAwrXGu/IzsoI/w+/ro=";
 
     nativeBuildInputs = [ super.makeWrapper ];
 

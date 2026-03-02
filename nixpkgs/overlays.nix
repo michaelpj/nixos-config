@@ -6,5 +6,4 @@ in
   (import ./overlays/donethat.nix)
   (import ./overlays/fixes.nix { inherit claudeCodePackageLock; })
   (import ./overlays/via.nix)
-  (import ./overlays/viax.nix)
 ]

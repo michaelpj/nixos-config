@@ -54,7 +54,6 @@
     haskellPackages.haskell-language-server
     cabal-install
     via
-    viax
     haskellPackages.ghc-prof-flamegraph
     hlint
     stylish-haskell
