@@ -9,7 +9,22 @@
 
   hardware = {
     trackpoint.emulateWheel = true;
-    bluetooth.enable = true;
+    # Stabilise HFP (hands-free) profile — the MediaTek MT7921 adapter
+    # drops the HFP transport every few minutes under default settings.
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          FastConnectable = true;                  # stay connectable so reconnects are fast
+          ReconnectAttempts = 7;                    # retry on disconnect (default 0)
+          ReconnectIntervals = "1,2,4,8,16,32,64"; # exponential backoff (seconds)
+          Experimental = true;                     # better codec negotiation + battery reporting
+        };
+        Policy = {
+          AutoEnable = true;                       # auto-enable adapter on boot
+        };
+      };
+    };
     graphics.enable32Bit = true;
     enableRedistributableFirmware = true;
     # this is on by default but let's make sure so we can set it
@@ -28,8 +43,16 @@
     # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"
+      # Prevent btusb from enabling USB autosuspend (causes HFP transport drops on MT7921)
+      options btusb enable_autosuspend=0 force_scofix=1
     '';
   };
+
+  # Prevent USB autosuspend on MediaTek Bluetooth adapter (MT7921)
+  # to avoid HFP transport drops — set both control and autosuspend delay
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0e8d", ATTR{idProduct}=="e616", ATTR{power/control}="on", ATTR{power/autosuspend}="-1", ATTR{power/autosuspend_delay_ms}="-1"
+  '';
 
   services = {
     fprintd = {

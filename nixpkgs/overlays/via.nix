@@ -28,16 +28,16 @@ in
 {
   via = super.rustPlatform.buildRustPackage rec {
     pname = "via";
-    version = "0.2.0";
+    version = "0.3.0";
 
     src = super.fetchFromGitHub {
-      owner = "michaelpj";
+      owner = "rehno-lindeque";
       repo = "via";
-      rev = "594dc91c1557143a8af900d8c5bec9f8165706db";
-      hash = "sha256-lWr/XAsBiJ4MtVqWTaqd4rOadMBQZheqwUpL1275KnQ=";
+      rev = version;
+      hash = "sha256-+mWNaFgSExiFxTTFt5IqTTQTIgn39dHsXGG0OczEqTc=";
     };
 
-    cargoHash = "sha256-W9RY2wFCNqsDi+FaPXlYQqNcpAwrXGu/IzsoI/w+/ro=";
+    cargoHash = "sha256-ay2xM2QMbcgO1Hq+OrNrEQmjCpPSz0KgHoLVDwb9tbY=";
 
     nativeBuildInputs = [ super.makeWrapper ];
 

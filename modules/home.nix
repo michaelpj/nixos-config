@@ -112,6 +112,34 @@
             ''
             "sh"
           ];
+          git-sync = [
+            "util" "exec" "--"
+            "sh" "-eu" "-c"
+            ''
+              rev="$1"
+
+              # Check if the rev has any local bookmarks
+              has_bookmark=$(jj log --no-graph -r "$rev" -T 'if(local_bookmarks.len() > 0, "yes", "no")')
+
+              if [ "$has_bookmark" = "yes" ]; then
+                jj git push -r "$rev"
+              else
+                jj git push -c "$rev"
+              fi
+            ''
+            "sh"
+          ];
+          gerrit-sync = [
+            "util" "exec" "--"
+            "sh" "-eu" "-c"
+            ''
+              rev="$1"
+
+              jj git-sync "$rev"
+              jj gerrit upload -r "$rev"
+            ''
+            "sh"
+          ];
         };
       };
     };

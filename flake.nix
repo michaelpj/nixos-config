@@ -14,9 +14,13 @@
       url = "github:matthewcroughan/nixinate";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    codex-cli-nix = {
+      url = "github:sadjow/codex-cli-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixinate }: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixinate, codex-cli-nix }: {
 
 
     packages."x86_64-linux" =
@@ -60,7 +64,7 @@
             revModule
             localNixpkgsModule
           ];
-          specialArgs = { inherit nixos-hardware home-manager; };
+          specialArgs = { inherit nixos-hardware home-manager codex-cli-nix; };
         };
         schooner = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -72,7 +76,7 @@
             revModule
             localNixpkgsModule
           ];
-          specialArgs = { inherit nixos-hardware home-manager; };
+          specialArgs = { inherit nixos-hardware home-manager codex-cli-nix; };
         };
         vps = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
