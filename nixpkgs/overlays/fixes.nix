@@ -1,13 +1,13 @@
 { claudeCodePackageLock }: self: super:
 let
-  claudeCodeVersion = "2.1.72";
+  claudeCodeVersion = "2.1.81";
   claudeCodeSrc = super.fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${claudeCodeVersion}.tgz";
-    hash = "sha256-sSIjVW0DWb/rTv0AN7ineU4h45jnzFfElqkr1/+wWAk=";
+    hash = "sha256-WT+fj9H/5hlr/U8MygiIdE2QZ32kRz6wTjYEABtmBPU=";
   };
 in
 {
-  # Update claude-code to 2.1.72
+  # Update claude-code to 2.1.81
   claude-code = super.claude-code.overrideAttrs (oldAttrs: {
     version = claudeCodeVersion;
     src = claudeCodeSrc;
@@ -22,7 +22,7 @@ in
       postPatch = ''
         cp ${claudeCodePackageLock} package-lock.json
       '';
-      hash = "sha256-Pd/UZU9opWg7pEFfISLTHN5Gc08+E1x6ip3YzkRkV7w=";
+      hash = "sha256-x8Y1vODjATE6F6r0GhK427J0h2Et7bsqKoDcWaNO+IM=";
     };
   });
 

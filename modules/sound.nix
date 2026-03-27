@@ -21,12 +21,22 @@
         };
         "monitor.bluez.rules" = [
           {
-            # Increase Bluetooth audio headroom to absorb brief transport hiccups
             matches = [{ "device.name" = "~bluez_card.*"; }];
             actions = {
               update-props = {
                 "api.bluez5.internal" = false;
                 "bluez5.auto-connect" = "[ hfp_hf hsp_hs a2dp_sink ]";
+              };
+            };
+          }
+          {
+            # Keep BT transport alive — prevents PipeWire from releasing and
+            # reacquiring the transport during brief idle moments, which is
+            # fragile and causes HFP reconnection storms on the MT7922.
+            matches = [{ "node.name" = "~bluez_*.*"; }];
+            actions = {
+              update-props = {
+                "session.suspend-timeout-seconds" = 0;
               };
             };
           }
