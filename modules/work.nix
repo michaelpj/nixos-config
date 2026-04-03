@@ -85,7 +85,6 @@
     libreoffice
     gimp
     vault
-    aider-chat
     claude-code
     codex-cli-nix.packages.${pkgs.system}.default
     remmina
