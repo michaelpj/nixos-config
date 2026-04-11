@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [
@@ -47,6 +47,7 @@
     git = {
       enable = true;
       package = pkgs.gitFull;
+      signing.format = "openpgp";
       includes = [
         { path = ../dotfiles/gitconfig; }
         { condition = "gitdir:iohk/"; path = ../dotfiles/gitconfig-iohk; }
@@ -146,14 +147,14 @@
     vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
-        airline
-        fugitive
+        vim-airline
+        vim-fugitive
         vim-markdown
         nerdtree
         nerdcommenter
         molokai
-        repeat
-        surround
+        vim-repeat
+        vim-surround
         syntastic
       ];
       extraConfig = builtins.readFile ../dotfiles/.vimrc;
@@ -164,6 +165,7 @@
       syntaxHighlighting.enable = true;
       historySubstringSearch.enable = true;
       defaultKeymap = "viins";
+      dotDir = config.home.homeDirectory;
       initContent = builtins.readFile ../dotfiles/.zshrc;
     };
     mullvad-vpn.enable = true;

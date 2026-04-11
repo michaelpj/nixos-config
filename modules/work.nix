@@ -86,7 +86,7 @@
     gimp
     vault
     claude-code
-    codex-cli-nix.packages.${pkgs.system}.default
+    codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     remmina
     donethat
   ];

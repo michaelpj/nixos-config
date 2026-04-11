@@ -39,7 +39,7 @@ in
       self.cairo
       self.gdk-pixbuf
       self.pango
-      self.xorg.libxcb
+      self.libxcb
     ];
   };
 }
