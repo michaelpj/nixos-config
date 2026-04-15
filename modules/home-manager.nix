@@ -1,7 +1,7 @@
-{ config, pkgs, codex-cli-nix, ... }:
+{ config, pkgs, llm-agents-nix, ... }:
 
 {
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = { inherit codex-cli-nix; };
+  home-manager.extraSpecialArgs = { inherit llm-agents-nix; };
   home-manager.users.michael = import ./home.nix;
 }

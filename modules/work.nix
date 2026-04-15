@@ -1,4 +1,7 @@
-{ pkgs, codex-cli-nix, ... }:
+{ pkgs, llm-agents-nix, ... }:
+let
+  llmAgents = llm-agents-nix.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   home.packages = with pkgs; [
     # build-essentials
@@ -85,8 +88,9 @@
     libreoffice
     gimp
     vault
-    claude-code
-    codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    llmAgents.claude-code
+    llmAgents.codex
+    llmAgents.coderabbit-cli
     remmina
     donethat
   ];
