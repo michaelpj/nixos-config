@@ -2,37 +2,84 @@ self: super:
 
 let
   pname = "donethat";
-  version = "1.5.0";
-  src = super.fetchurl {
-    url = "https://github.com/donethatai/donethat-releases/releases/download/v${version}/DoneThat-x86_64.AppImage";
-    hash = "sha256-ih5BrOi7Y0vfIYH412LvwNbVpTzxq7w02m+kHO7rTjM=";
-  };
+  version = "2.1.0";
 in
 {
-  donethat = super.appimageTools.wrapType2 {
-    inherit pname version src;
+  donethat = super.buildNpmPackage {
+    inherit pname version;
 
-    extraInstallCommands =
-      let
-        appimageContents = super.appimageTools.extractType2 { inherit pname version src; };
-      in
-      ''
-        # Install icons
-        mkdir -p $out/share
-        cp -r ${appimageContents}/usr/share/icons $out/share/icons
+    src = super.fetchFromGitHub {
+      owner = "donethatai";
+      repo = "donethat-electron";
+      rev = "v${version}";
+      hash = "sha256-88BMR7o/BlZe4vQXAjC8/Vr1LsjcSdVGrgkXd2naPQo=";
+    };
 
-        # Install desktop file with corrected Exec and visibility
-        install -Dm444 ${appimageContents}/donethat.desktop -t $out/share/applications/
-        substituteInPlace $out/share/applications/donethat.desktop \
-          --replace-quiet 'Exec=AppRun --no-sandbox %U' 'Exec=${pname} %U' \
-          --replace-quiet 'NoDisplay=true' 'NoDisplay=false'
-      '';
+    npmDepsHash = "sha256-kg8DmTWJen4OWb1uUjSpVWxUq37WmjVRYY/Ao/Wri0M=";
+
+    # Skip postinstall: it builds macOS-only Swift helpers and runs electron-builder install-app-deps
+    npmFlags = [ "--ignore-scripts" ];
+
+    env.ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
+
+    nativeBuildInputs = with super; [ makeWrapper ];
+
+    # Override build to only run asset compilation, not electron-builder
+    buildPhase = ''
+      runHook preBuild
+      mkdir -p build
+      npx postcss src/styles.css -o ./build/output.css --verbose
+      npx webpack --config webpack.config.js
+      runHook postBuild
+    '';
+
+    # Assemble app directory and wrap with system electron
+    installPhase = ''
+      runHook preInstall
+
+      mkdir -p $out/lib/donethat
+
+      # Copy app files (matching electron-builder's files config)
+      cp main.js firebase-config.js package.json $out/lib/donethat/
+      cp -r src src-main build resources $out/lib/donethat/
+
+      # Prune dev dependencies, then copy node_modules
+      npm prune --omit=dev
+      cp -r node_modules $out/lib/donethat/
+
+      # Create electron wrapper
+      mkdir -p $out/bin
+      makeWrapper ${super.electron}/bin/electron $out/bin/donethat \
+        --add-flags "$out/lib/donethat"
+
+      # Desktop entry
+      mkdir -p $out/share/applications
+      cat > $out/share/applications/donethat.desktop << EOF
+      [Desktop Entry]
+      Name=DoneThat
+      Comment=AI-powered daily standup and progress tracking
+      Exec=donethat %U
+      Terminal=false
+      Type=Application
+      Icon=donethat
+      StartupWMClass=donethat
+      Categories=Utility;
+      MimeType=x-scheme-handler/donethat;
+      EOF
+
+      # Icon
+      mkdir -p $out/share/icons/hicolor/512x512/apps
+      cp resources/icon-launcher.png $out/share/icons/hicolor/512x512/apps/donethat.png
+
+      runHook postInstall
+    '';
 
     meta = with super.lib; {
       description = "DoneThat - AI-powered daily standup and progress tracking";
       homepage = "https://donethat.ai";
-      license = licenses.unfree;
+      license = licenses.gpl3Plus;
       platforms = [ "x86_64-linux" ];
+      mainProgram = "donethat";
     };
   };
 }
