@@ -14,12 +14,15 @@
     enable = true;
   };
 
+  # Provides geoclue-based location lookup. Consumed by KDE's geotimezoned
+  # kded module for automatic timezone updates (enabled per-user in home.nix).
+  # Note: beacondb (the default WiFi geoprovider) often has no data for local
+  # APs, so geoclue falls back to ~25km IP-based accuracy. That's fine for
+  # timezones, but means the result follows the public egress IP — a VPN
+  # (e.g. Mullvad) on a foreign server can make it pick the wrong zone.
   location = {
     provider = "geoclue2";
   };
-
-  # broken due to geoclue being stupid
-  #services.localtime.enable = true;
 
   fonts = {
     fontDir.enable = true;

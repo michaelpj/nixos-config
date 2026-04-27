@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   imports = [
@@ -185,6 +185,19 @@
       pinentry.package = pkgs.pinentry-qt;
     };
   };
+
+  # Automatic timezone updating, KDE-native. geotimezoned is a kded module
+  # shipped with Plasma that uses geoclue (enabled system-side in
+  # graphical.nix) to track the current location and update the system
+  # timezone, with a banner notification when it changes. Its autoload flag
+  # lives in the mutable kded6rc, so set it idempotently rather than
+  # symlinking the file (which would stop KDE managing other modules' state).
+  # Takes effect on next login, or run once now with:
+  #   qdbus6 org.kde.kded6 /kded loadModule geotimezoned
+  home.activation.enableGeotimezoned = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run ${pkgs.kdePackages.kconfig}/bin/kwriteconfig6 \
+      --file kded6rc --group Module-geotimezoned --key autoload true
+  '';
 
   xdg.configFile."direnv/lib/oprc.sh" =
     let
