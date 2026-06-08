@@ -1,4 +1,4 @@
 {
   allowUnfree = true;
-  permittedInsecurePackages = [ "electron-27.3.11" ];
+  permittedInsecurePackages = [ "electron-39.8.10" ];
 }
