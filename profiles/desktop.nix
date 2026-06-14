@@ -11,6 +11,7 @@
     ../modules/graphical.nix
     ../modules/sound.nix
     ../modules/security.nix
+    ../modules/dictation.nix
 
     ../modules/1password.nix
     ../modules/bitwarden.nix
