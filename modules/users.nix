@@ -17,6 +17,7 @@
       "wheel"
       "audio"
       "video"
+      "input"
       "systemd-journal"
       "networkmanager"
       "vboxusers"
