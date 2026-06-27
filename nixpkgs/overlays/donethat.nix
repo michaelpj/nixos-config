@@ -2,7 +2,7 @@ self: super:
 
 let
   pname = "donethat";
-  version = "2.1.0";
+  version = "2.2.11";
 in
 {
   donethat = super.buildNpmPackage {
@@ -12,10 +12,10 @@ in
       owner = "donethatai";
       repo = "donethat-electron";
       rev = "v${version}";
-      hash = "sha256-88BMR7o/BlZe4vQXAjC8/Vr1LsjcSdVGrgkXd2naPQo=";
+      hash = "sha256-bA2PSDprTznsw70iHVGyoCgiyAdtGIzqfJ3Cy2PI+to=";
     };
 
-    npmDepsHash = "sha256-kg8DmTWJen4OWb1uUjSpVWxUq37WmjVRYY/Ao/Wri0M=";
+    npmDepsHash = "sha256-LrhYWaTE8+lV4XvqiLRWMY8CLmie2X9vF4YU6FH/i1U=";
 
     # Skip postinstall: it builds macOS-only Swift helpers and runs electron-builder install-app-deps
     npmFlags = [ "--ignore-scripts" ];
