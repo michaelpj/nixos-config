@@ -7,13 +7,7 @@
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
       };
     };
-    # SSH version
-    #extraConfig = ''
-    #Host eu.nixbuild.net
-    #PubkeyAcceptedKeyTypes ssh-ed25519
-    #IdentityFile /root/.ssh/nixbuild
-    #'';
-    extraConfig = '' 
+    extraConfig = ''
       Host eu.nixbuild.net
         # don't use any authentication mechanisms SSH expects (password, SSH keys, etc.)
         PreferredAuthentications none

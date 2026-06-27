@@ -26,7 +26,6 @@ in
     plantuml
     tmuxinator
     # text
-    # emacs 
     vscode
     editorconfig-core-c
     pandoc

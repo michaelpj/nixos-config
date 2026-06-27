@@ -2,10 +2,14 @@
 
 {
   environment.systemPackages = with pkgs; [
-    pkgs.powertop
-    pkgs.acpi
-    pkgs.upower
+    powertop
+    acpi
+    upower
   ];
 
   services.upower.enable = true;
+
+  # Don't force-import the ZFS pool: a forced import can replay a stale or
+  # half-written log and risks data loss. This becomes the default in 26.11.
+  boot.zfs.forceImportRoot = false;
 }

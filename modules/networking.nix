@@ -2,15 +2,11 @@
 
 {
   networking = {
-    networkmanager = {
-      enable = true;
-      # I am confused about whether I need this as well as
-      # networking.nameservers
-      appendNameservers = [ "8.8.8.8" ];
-    };
-    firewall.enable = false;
-    nameservers = [ "8.8.8.8" ];
-
+    networkmanager.enable = true;
+    # Leave DNS to NetworkManager/Mullvad. Hardcoding a public resolver here
+    # would send queries outside the VPN tunnel and defeat Mullvad's DNS-leak
+    # protection.
+    firewall.enable = true;
   };
 
   services.avahi = {
@@ -18,6 +14,8 @@
     nssmdns4 = true;
     publish.enable = true;
     ipv6 = true;
+    # mDNS needs UDP 5353 through the firewall.
+    openFirewall = true;
   };
   services.mullvad-vpn = {
     enable = true;

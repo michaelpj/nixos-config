@@ -23,14 +23,6 @@
     stateVersion = "22.05";
   };
 
-  #nix = {
-  #package = pkgs.nixUnstable;
-  #settings = {
-  #experimental-features = "nix-command flakes";
-  #allow-import-from-derivation = true;
-  #};
-  #};
-
   programs = {
     home-manager.enable = true;
     direnv.enable = true;
