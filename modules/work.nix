@@ -72,7 +72,6 @@ in
     # comms
     element-desktop
     slack
-    zoom-us
     discord
     signal-desktop
     # audio

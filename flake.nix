@@ -59,7 +59,6 @@
           modules = [
             ./machines/clipper/configuration.nix
             ./profiles/laptop.nix
-            ./modules/work/iohk.nix
             ./modules/work/circuithub.nix
             revModule
             localNixpkgsModule
@@ -71,7 +70,6 @@
           modules = [
             ./machines/schooner/configuration.nix
             ./profiles/laptop.nix
-            ./modules/work/iohk.nix
             ./modules/work/circuithub.nix
             revModule
             localNixpkgsModule

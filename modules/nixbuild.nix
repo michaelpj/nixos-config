@@ -14,8 +14,11 @@
         # log in as the 'authtoken' user
         # The token itself contains user information that nixbuild.net needs
         User authtoken
-        # Send the 'token' environment variable from Nix to nixbuild.net in the SSH session.
-        SetEnv token=${builtins.readFile ../secrets/mpj-io-biscuit-token}
+        # Auth token goes here, e.g.:
+        #   SetEnv token=<your-nixbuild.net-biscuit-token>
+        # Don't readFile a token from a tracked path — that bakes the secret
+        # into the world-readable Nix store. Use a runtime secret (agenix/
+        # sops-nix) or an out-of-store SetEnv if/when a personal token is needed.
     '';
   };
 }

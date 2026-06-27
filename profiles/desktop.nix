@@ -17,6 +17,5 @@
     ../modules/bitwarden.nix
     ../modules/cachix.nix
     ../modules/nixbuild.nix
-    ../modules/zwrk.nix
   ];
 }

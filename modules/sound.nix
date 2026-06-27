@@ -44,8 +44,4 @@
       };
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    pulseaudioFull # needed to provide additional tools (pipewire can be configured via pulseaudio commands) and needed by zoom to provide advanced share screen options (optimized for video…)
-  ];
 }
