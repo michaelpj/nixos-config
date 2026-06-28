@@ -89,9 +89,16 @@ in
     llmAgents.claude-code
     llmAgents.codex
     llmAgents.coderabbit-cli
+    llmAgents.hunk
     remmina
     donethat
   ];
+
+  # Symlink Hunk's bundled review skill into Claude Code's skills directory.
+  # Pointing at the package output (rather than a fixed store path) keeps it in
+  # sync whenever hunk is upgraded. Skill path comes from `hunk skill path`.
+  home.file.".claude/skills/hunk-review/SKILL.md".source =
+    "${llmAgents.hunk}/skills/hunk-review/SKILL.md";
 
   programs.firefox = {
     enable = true;
