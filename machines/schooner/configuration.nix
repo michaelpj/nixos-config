@@ -39,7 +39,21 @@
       # I don't really care about these issues on my laptop
       "mitigations=off"
       "amdgpu.sg_display=0"
+      # Flicker-free boot: silence the console so it doesn't stomp the
+      # Plymouth splash. See consoleLogLevel/initrd.verbose below.
+      "quiet"
+      "udev.log_level=3"
     ];
+
+    # Quiet boot for a clean Plymouth splash. Hit Esc during boot to drop
+    # the splash and see console output if something hangs.
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+
+    # Load the GPU driver in the initrd so KMS sets the display mode once,
+    # early, and never switches — this is what makes the splash flicker-free
+    # rather than flashing when amdgpu takes over from the firmware framebuffer.
+    initrd.kernelModules = [ "amdgpu" ];
     # https://community.frame.work/t/framework-nixos-linux-users-self-help/31426/77
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"
