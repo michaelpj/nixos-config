@@ -15,7 +15,10 @@
     wireplumber.extraConfig = {
       "50-bluetooth" = {
         "monitor.bluez.properties" = {
-          "bluez5.enable-msbc" = true;   # wideband speech codec for HFP (better quality + stability)
+          # mSBC disabled: on the MT7922 the transparent-eSCO path it needs is
+          # flaky and caused mid-call SCO transport death (firmware/host handle
+          # desync). CVSD is narrowband but robust.
+          "bluez5.enable-msbc" = false;
           "bluez5.enable-sbc-xq" = true; # high-quality SBC variant for A2DP
           "bluez5.enable-hw-volume" = true;  # let headphones handle volume natively
         };

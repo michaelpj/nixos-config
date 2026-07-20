@@ -58,7 +58,7 @@
     extraModprobeConfig = ''
       options cfg80211 ieee80211_regdom="GB"
       # Prevent btusb from enabling USB autosuspend (causes HFP transport drops on MT7921)
-      options btusb enable_autosuspend=0 force_scofix=1
+      options btusb enable_autosuspend=0
     '';
   };
 
