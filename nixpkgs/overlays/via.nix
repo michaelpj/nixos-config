@@ -26,15 +26,16 @@ let
   };
 in
 {
-  via = super.rustPlatform.buildRustPackage rec {
+  via = super.rustPlatform.buildRustPackage {
     pname = "via";
-    version = "0.3.0";
+    # 0.3.0 plus the `.` session token (resolves to the current directory's basename)
+    version = "0.3.0-unstable-2026-06-30";
 
     src = super.fetchFromGitHub {
       owner = "rehno-lindeque";
       repo = "via";
-      rev = version;
-      hash = "sha256-+mWNaFgSExiFxTTFt5IqTTQTIgn39dHsXGG0OczEqTc=";
+      rev = "0b5e2b3b19ceb43c54036d621a05e527e250de69";
+      hash = "sha256-aoLDllqLRf0WIGcQT/Jd7gmlIQXzq5Gppn4crvKs2fg=";
     };
 
     cargoHash = "sha256-ay2xM2QMbcgO1Hq+OrNrEQmjCpPSz0KgHoLVDwb9tbY=";
