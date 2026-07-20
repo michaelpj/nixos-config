@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Remove a jj workspace or git worktree created by worktree-add:
+# forget/deregister it and delete its padded directory.
+#
+# Usage: worktree-remove NAME [BASE-DIR]
+set -euo pipefail
+LC_ALL=C
+
+name=${1:?usage: worktree-remove NAME [BASE-DIR]}
+base=${2:-$HOME/wt}
+
+if root=$(jj workspace root 2>/dev/null); then
+  vcs=jj
+else
+  root=$(git rev-parse --show-toplevel)
+  vcs=git
+fi
+
+# Recompute the padded path; must match worktree-add's layout.
+padlen=$((${#root} - ${#base} - ${#name} - 2))
+proj="$(basename "$root")-$(printf '%s' "$root" | sha1sum | cut -c1-4)"
+pad=$(printf '%-*.*s' "$padlen" "$padlen" "$proj" | tr ' ' '_')
+target="$base/$pad/$name"
+
+# The worktree must be registered in THIS repo before we delete
+# anything — that is what makes the recomputed path ours. (`jj
+# workspace forget` exits 0 with a warning for unknown names, so its
+# exit code proves nothing.)
+if [ "$vcs" = jj ]; then
+  jj workspace list | grep -q "^${name}:" \
+    || { echo "workspace '$name' not in this repo" >&2; exit 1; }
+  jj workspace forget "$name"
+  if [ -d "$target" ] && [[ "$target" == "$base/"*/"$name" ]]; then
+    rm -rf -- "$target"
+  fi
+else
+  git worktree list --porcelain | grep -Fqx "worktree $target" \
+    || { echo "worktree '$name' not in this repo" >&2; exit 1; }
+  git worktree remove --force "$target"
+fi
+rmdir --ignore-fail-on-non-empty "$base/$pad" "$base" 2>/dev/null || true

@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+# Create a jj workspace (or, in a plain git repo, a detached git
+# worktree) seeded with a "hot" cabal build cache, so the
+# first `cabal build all` in it is immediately "Up to date" instead of
+# reconfiguring and rebuilding from scratch.
+#
+# Usage: worktree-add NAME [BASE-DIR]
+#
+# The workspace is created at BASE-DIR/<pad>/NAME (BASE-DIR defaults to
+# ~/wt), where <pad> is an underscore directory chosen so the new
+# absolute path has the SAME BYTE LENGTH as this repo's root. See Note
+# [Relocating dist-newstyle] at the end of this file for why.
+#
+# Prerequisite for the "Up to date" result: the environment that runs
+# cabal in the worktree must have the same $PATH as the one that built
+# the parent, because cabal's config cache key includes $PATH. Repos
+# whose .envrc adds a repo-local dir to PATH break this (each checkout
+# gets a different entry) — expose such dirs via a checkout-invariant
+# symlink dir instead (see dhls's .envrc for the pattern). A mismatch
+# is not fatal: it costs one compile-free reconfigure.
+set -euo pipefail
+LC_ALL=C
+
+name=${1:?usage: worktree-add NAME [BASE-DIR]}
+base=${2:-$HOME/wt}
+
+if root=$(jj workspace root 2>/dev/null); then
+  vcs=jj
+else
+  root=$(git rev-parse --show-toplevel)
+  vcs=git
+fi
+
+# target = base + '/' + pad + '/' + name, padded to the root's length
+padlen=$((${#root} - ${#base} - ${#name} - 2))
+if ((padlen < 1)); then
+  echo "error: '$base/_/$name' is longer than '$root'" >&2
+  echo "pick a shorter NAME or BASE-DIR: the target path must not" >&2
+  echo "exceed the repo root's length (see Note [Relocating dist-newstyle])" >&2
+  exit 1
+fi
+# The pad segment carries the owning project's identity (basename plus
+# a short hash of the root path), truncated or '_'-padded to padlen.
+# Without this, two repos whose roots have equal byte length would map
+# the same worktree name onto the identical path — and the remove hook
+# recomputes paths from names, so it could delete another project's
+# worktree.
+proj="$(basename "$root")-$(printf '%s' "$root" | sha1sum | cut -c1-4)"
+pad=$(printf '%-*.*s' "$padlen" "$padlen" "$proj" | tr ' ' '_')
+target="$base/$pad/$name"
+
+# Progress goes to stderr; stdout carries only the final path, so
+# `cd $(worktree-add ...)` works. Remove with worktree-remove.
+mkdir -p "$base/$pad"
+cd "$root"
+if [ "$vcs" = jj ]; then
+  jj workspace add -r @ "$target" 1>&2
+else
+  git worktree add --detach "$target" 1>&2
+fi
+
+# cabal.project.local is not tracked, but feeds the configuration key
+if [ -f cabal.project.local ]; then
+  cp cabal.project.local "$target/"
+fi
+
+if [ -d dist-newstyle ]; then
+  echo "Copying dist-newstyle..." >&2
+  cp -a --reflink=auto dist-newstyle "$target/"
+
+  echo "Relocating dist-newstyle..." >&2
+  export OLD="$root" NEW="$target"
+  grep -rlaZ --fixed-strings "$OLD" "$target/dist-newstyle" \
+    | while IFS= read -r -d '' f; do
+      mtime=$(stat -c %y "$f")
+      perl -pi -e 's/\Q$ENV{OLD}\E/$ENV{NEW}/g' "$f"
+      touch -d "$mtime" "$f"
+    done
+fi
+
+echo "Workspace ready: $target (direnv allow && cabal build all)" >&2
+echo "$target"
+
+# Note [Relocating dist-newstyle]
+#
+# cabal's dist-newstyle is not relocatable: absolute paths to the
+# project root are embedded in plan.json, the package db .conf files,
+# and — the awkward part — the Data.Binary-serialized cache/monitor
+# files (dist-newstyle/cache/*, per-target cache/{config,build,
+# registration}, setup-config). Copying it into a new worktree makes
+# cabal re-resolve and reconfigure everything ("configuration
+# changed"). Upstream fix: cabal PR #12145 (--relative-build-tree),
+# not yet released.
+#
+# Until then we rewrite the paths in place. The Binary streams encode
+# strings with length prefixes, so a general rewrite would need to
+# parse them — but a substitution that preserves the path's byte
+# length keeps every length prefix valid without parsing anything.
+# That is why this script pads the target path to exactly the length
+# of the source root. (The leading 16 bytes of each cache file are a
+# fingerprint of the *type*, not the content, so editing content is
+# safe.)
+#
+# The copy itself must preserve mtimes (cp -a), and this matters even
+# more than the path rewriting: GHC's recompilation check hashes
+# sources and interfaces, but object-file freshness is judged by
+# mtime — a .o/.dyn_o older than its .hi is treated as stale. A
+# non-preserving copy re-stamps files in readdir order (roughly
+# alphabetical, so .dyn_o and .o usually land "older" than .hi) and
+# GHC then recompiles nearly every module. --reflink=auto is
+# orthogonal: on filesystems with block cloning (ZFS 2.2+, btrfs, XFS)
+# the data copy is near-free; the rewrite below re-materializes only
+# the files it edits.
+#
+# Two further subtleties, discovered empirically:
+#
+#  * Some monitor caches record the expected content hash of *other*
+#    cache files (e.g. each executable's monitor watches the library's
+#    cache/build). Rewriting a file changes its hash, which would
+#    invalidate those. But cabal's file monitors accept a file as
+#    unchanged on matching mtime+size without rehashing — so we
+#    restore each rewritten file's mtime (size is unchanged by
+#    construction), and the stale recorded hashes are never consulted.
+#
+#  * The project config cache key includes $PATH (getSystemSearchPath),
+#    so a per-checkout PATH entry (a repo .envrc doing `PATH_add bin`)
+#    invalidates copied caches in any environment whose entry differs.
+#    Such repos should expose their scripts through a checkout-invariant
+#    symlink dir instead (dhls uses ~/.local/share/dhls/bin), making
+#    $PATH — and hence the key — identical in the parent and every
+#    worktree, whichever environment runs the build. Plain `use flake`
+#    devshells are already invariant: nix store paths don't depend on
+#    the checkout location.
+#
+# Failure is graceful: if anything here stops matching how cabal works,
+# the worst case is what a plain `cp -a dist-newstyle` gives you — one
+# solver + reconfigure pass (~20s here), after which GHC's
+# recompilation check still reuses all the copied .hi/.o files and no
+# recompilation happens.
