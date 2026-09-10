@@ -3,7 +3,7 @@
   services.desktopManager.plasma6.enable = true;
 
   services = {
-    displayManager.sddm = {
+    displayManager.plasma-login-manager = {
       enable = true;
       enableHidpi = true;
       wayland.enable = true;
@@ -11,8 +11,4 @@
   };
 
   programs.kdeconnect.enable = true;
-  environment.systemPackages = [
-    # this doesn't do much, but makes it easier to see the settings
-    pkgs.kdePackages.sddm-kcm
-  ];
 }
