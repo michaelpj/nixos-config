@@ -5,8 +5,10 @@
   services = {
     displayManager.plasma-login-manager = {
       enable = true;
+      /* TODO: How to apply these?
       enableHidpi = true;
       wayland.enable = true;
+      */
     };
   };
 
